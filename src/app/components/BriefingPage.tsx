@@ -237,85 +237,106 @@ export function BriefingPage() {
         "Outro"
     ];
 
-    const goBack = () => {
-        window.history.pushState({}, '', '/');
-        window.dispatchEvent(new PopStateEvent('popstate'));
-    };
-
     return (
-        <div className="min-h-screen bg-[#FCF6EF] py-8 md:py-16 px-4 md:px-12 flex flex-col items-center justify-start md:justify-center overflow-x-hidden">
-            {/* Background Ornaments */}
-            <div className="fixed inset-0 pointer-events-none overflow-hidden text-[#795558]/5">
-                <div className="absolute top-10 left-10 text-[20rem] font-serif italic">B</div>
-                <div className="absolute bottom-10 right-10 text-[20rem] font-serif italic">A</div>
+        <div className="min-h-screen bg-[#FCF6EF] py-12 md:py-24 px-4 md:px-12 relative overflow-hidden">
+            {/* Background Texture */}
+            <div className="fixed inset-0 pointer-events-none opacity-40">
+                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#795558]/5 rounded-full blur-[120px]" />
+                <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#795558]/3 rounded-full blur-[150px]" />
             </div>
 
             <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="max-w-4xl w-full relative z-10"
+                className="max-w-4xl mx-auto relative z-10"
             >
-                <button
-                    onClick={goBack}
-                    className="flex items-center gap-2 text-[#795558] hover:text-[#5A3D3F] transition-colors mb-12 group"
-                >
-                    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:-translate-x-1 transition-transform">
-                        <ArrowLeft className="w-4 h-4" />
+                {/* Header Nav */}
+                <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-12 md:mb-20">
+                    <div className="flex items-center gap-6">
+                        <button
+                            onClick={() => {
+                                window.history.pushState({}, '', import.meta.env.BASE_URL);
+                                window.dispatchEvent(new PopStateEvent('popstate'));
+                            }}
+                            className="group flex items-center gap-3 md:gap-4 text-[#795558]"
+                        >
+                            <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:bg-[#795558] group-hover:text-white transition-all">
+                                <ArrowLeft className="w-4 h-4 md:w-5 md:h-5" />
+                            </div>
+                            <span className="text-[9px] md:text-[10px] font-black uppercase tracking-widest">Início</span>
+                        </button>
+
+                        <div className="w-[1px] h-6 bg-[#795558]/10 hidden md:block" />
+
+                        {/* Direct Share Tool */}
+                        <button
+                            onClick={() => {
+                                const url = window.location.href;
+                                navigator.clipboard.writeText(url);
+                                toast.success('Link do briefing copiado! Prontinho para enviar ao cliente.');
+                            }}
+                            className="group flex items-center gap-3 bg-white/50 backdrop-blur-sm border border-[#795558]/5 px-4 md:px-6 py-3 rounded-full hover:bg-[#795558] hover:text-white transition-all shadow-sm"
+                        >
+                            <div className="w-2 h-2 rounded-full bg-green-400 group-hover:animate-ping" />
+                            <span className="text-[9px] md:text-[10px] font-black uppercase tracking-widest">Copiar Link Direto</span>
+                        </button>
                     </div>
-                    <span className="text-[10px] font-black uppercase tracking-[0.3em]">Retornar</span>
-                </button>
 
-                <div className="bg-white rounded-[3rem] shadow-[0_40px_100px_-20px_rgba(121,85,88,0.1)] border border-white p-8 md:p-16 relative overflow-hidden">
-                    <div className="relative z-10">
-                        {/* Header */}
-                        <div className="mb-12">
-                            <span className="text-[10px] font-black uppercase tracking-[0.5em] text-[#795558]/40 block mb-4 italic">Strategic Investigation</span>
-                            <h1 className="text-4xl md:text-5xl font-serif text-[#795558] leading-tight mb-4">
-                                Briefing <span className="italic font-light">Estratégico</span>
+                    <div className="text-right hidden sm:block">
+                        <span className="text-[9px] md:text-[10px] font-black tracking-widest text-[#795558]/30 uppercase">Passo {step} de 5</span>
+                        <div className="w-24 md:w-32 h-[3px] bg-[#795558]/5 mt-2 rounded-full overflow-hidden">
+                            <motion.div
+                                initial={{ width: 0 }}
+                                animate={{ width: `${(step / 5) * 100}%` }}
+                                className="h-full bg-[#795558]"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <div className="bg-white rounded-[2.5rem] md:rounded-[4rem] shadow-[0_50px_100px_-20px_rgba(121,85,88,0.15)] overflow-hidden border border-[#795558]/5">
+                    <div className="p-8 md:p-16 lg:p-20">
+                        <header className="mb-12 md:mb-16">
+                            <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-[#FCF6EF] rounded-full text-[#795558] mb-6 md:mb-8">
+                                <Star className="w-3 h-3" />
+                                <span className="text-[9px] md:text-[10px] font-black uppercase tracking-widest">Dossiê Estratégico</span>
+                            </div>
+                            <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif text-[#795558] leading-tight">
+                                {step === 1 && <>Vamos começar pelo <span className="italic font-light">essencial</span></>}
+                                {step === 2 && <>Sua história é seu <span className="italic font-light">diferencial</span></>}
+                                {step === 3 && <>O que vamos <span className="italic font-light">construir</span>?</>}
+                                {step === 4 && <>A <span className="italic font-light">alma</span> visual da marca</>}
+                                {step === 5 && <>Últimos <span className="italic font-light">ajustes</span></>}
                             </h1>
-                            <div className="w-20 h-[1.5px] bg-[#795558]/20" />
-                        </div>
+                        </header>
 
-                        {/* Stepper */}
-                        <div className="flex items-center gap-3 mb-16 overflow-x-auto pb-4 no-scrollbar">
-                            {[1, 2, 3, 4, 5].map((i) => (
-                                <div key={i} className="flex items-center gap-3 flex-shrink-0">
-                                    <div className={`w-10 h-10 rounded-full flex items-center justify-center text-[10px] font-black transition-all duration-500 border ${step >= i ? 'bg-[#795558] text-white border-[#795558]' : 'bg-transparent text-[#795558]/20 border-[#795558]/10'
-                                        }`}>
-                                        {i}
-                                    </div>
-                                    {i < 5 && <div className={`w-8 h-[1px] ${step > i ? 'bg-[#795558]/40' : 'bg-[#FCF6EF]'}`} />}
-                                </div>
-                            ))}
-                        </div>
-
-                        <form onSubmit={handleSubmit} className="space-y-10">
+                        <form onSubmit={handleSubmit}>
                             <AnimatePresence mode="wait">
-                                {/* Step 1: Identificação */}
+                                {/* Step 1: Info Base */}
                                 {step === 1 && (
-                                    <motion.div key="s1" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-8">
-                                        <div className="grid md:grid-cols-2 gap-8">
+                                    <motion.div key="s1" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-8 md:space-y-12">
+                                        <div className="grid md:grid-cols-2 gap-8 md:gap-10">
                                             <div className="space-y-3">
-                                                <label className="text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1 flex items-center gap-2"><User className="w-3 h-3" /> Nome Completo</label>
-                                                <input type="text" name="name" required value={formData.name} onChange={handleChange} className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none focus:border-[#795558] transition-all rounded-t-xl" />
+                                                <label className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1 flex items-center gap-2"><User className="w-3 h-3" /> Seu Nome</label>
+                                                <input type="text" name="name" required value={formData.name} onChange={handleChange} className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none focus:border-[#795558] transition-all rounded-t-xl text-sm md:text-base" />
                                             </div>
                                             <div className="space-y-3">
-                                                <label className="text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1 flex items-center gap-2"><Star className="w-3 h-3" /> Nome da Marca</label>
-                                                <input type="text" name="brandName" value={formData.brandName} onChange={handleChange} className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none focus:border-[#795558] transition-all rounded-t-xl" />
+                                                <label className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1 flex items-center gap-2"><Star className="w-3 h-3" /> Nome da Marca</label>
+                                                <input type="text" name="brandName" value={formData.brandName} onChange={handleChange} className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none focus:border-[#795558] transition-all rounded-t-xl text-sm md:text-base" />
                                             </div>
                                         </div>
-                                        <div className="grid md:grid-cols-3 gap-8">
-                                            <div className="space-y-3 col-span-1">
-                                                <label className="text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1">WhatsApp</label>
-                                                <input type="text" name="whatsapp" required value={formData.whatsapp} onChange={handleChange} className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none focus:border-[#795558] transition-all rounded-t-xl" />
+                                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                            <div className="space-y-3">
+                                                <label className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1">WhatsApp</label>
+                                                <input type="text" name="whatsapp" required value={formData.whatsapp} onChange={handleChange} className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none focus:border-[#795558] transition-all rounded-t-xl text-sm md:text-base" />
                                             </div>
-                                            <div className="space-y-3 col-span-1">
-                                                <label className="text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1">E-mail</label>
-                                                <input type="email" name="email" required value={formData.email} onChange={handleChange} className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none focus:border-[#795558] transition-all rounded-t-xl" />
+                                            <div className="space-y-3">
+                                                <label className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1">E-mail</label>
+                                                <input type="email" name="email" required value={formData.email} onChange={handleChange} className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none focus:border-[#795558] transition-all rounded-t-xl text-sm md:text-base" />
                                             </div>
-                                            <div className="space-y-3 col-span-1">
-                                                <label className="text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1 flex items-center gap-2"><Instagram className="w-3 h-3" /> Instagram/Site</label>
-                                                <input type="text" name="instagram" value={formData.instagram} onChange={handleChange} className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none focus:border-[#795558] transition-all rounded-t-xl" />
+                                            <div className="space-y-3">
+                                                <label className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1 flex items-center gap-2"><Instagram className="w-3 h-3" /> Instagram/Site</label>
+                                                <input type="text" name="instagram" value={formData.instagram} onChange={handleChange} className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none focus:border-[#795558] transition-all rounded-t-xl text-sm md:text-base" />
                                             </div>
                                         </div>
                                     </motion.div>
@@ -325,17 +346,17 @@ export function BriefingPage() {
                                 {step === 2 && (
                                     <motion.div key="s2" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-8">
                                         <div className="space-y-3">
-                                            <label className="text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1 flex items-center gap-2"><Search className="w-3 h-3" /> História e Essência da Marca</label>
-                                            <textarea name="history" value={formData.history} onChange={handleChange} rows={3} placeholder="Conte um pouco sobre como surgiu e o que a marca representa..." className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none focus:border-[#795558] rounded-t-xl resize-none" />
+                                            <label className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1 flex items-center gap-2"><Search className="w-3 h-3" /> História e Essência da Marca</label>
+                                            <textarea name="history" value={formData.history} onChange={handleChange} rows={3} placeholder="Conte um pouco sobre como surgiu..." className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none focus:border-[#795558] rounded-t-xl resize-none text-sm md:text-base" />
                                         </div>
-                                        <div className="grid md:grid-cols-2 gap-8">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                             <div className="space-y-3">
-                                                <label className="text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1">Quem são seus concorrentes?</label>
-                                                <textarea name="competitors" value={formData.competitors} onChange={handleChange} rows={2} className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none focus:border-[#795558] rounded-t-xl resize-none" />
+                                                <label className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1">Quem são seus concorrentes?</label>
+                                                <textarea name="competitors" value={formData.competitors} onChange={handleChange} rows={2} className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none focus:border-[#795558] rounded-t-xl resize-none text-sm md:text-base" />
                                             </div>
                                             <div className="space-y-3">
-                                                <label className="text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1">O que te diferencia deles?</label>
-                                                <textarea name="differentiation" value={formData.differentiation} onChange={handleChange} rows={2} className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none focus:border-[#795558] rounded-t-xl resize-none" />
+                                                <label className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1">O que te diferencia deles?</label>
+                                                <textarea name="differentiation" value={formData.differentiation} onChange={handleChange} rows={2} className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none focus:border-[#795558] rounded-t-xl resize-none text-sm md:text-base" />
                                             </div>
                                         </div>
                                     </motion.div>
@@ -345,25 +366,25 @@ export function BriefingPage() {
                                 {step === 3 && (
                                     <motion.div key="s3" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-10">
                                         <div className="space-y-6">
-                                            <label className="text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1 flex items-center gap-2"><Briefcase className="w-3 h-3" /> Qual o serviço principal?</label>
-                                            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                                            <label className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1 flex items-center gap-2"><Briefcase className="w-3 h-3" /> Qual o serviço principal?</label>
+                                            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
                                                 {services.map((s) => (
-                                                    <button key={s} type="button" onClick={() => handleServiceSelect(s)} className={`px-4 py-5 rounded-2xl border transition-all text-[10px] font-bold uppercase tracking-widest ${formData.service === s ? 'bg-[#795558] text-white border-[#795558] shadow-lg' : 'bg-white text-[#795558]/60 border-[#795558]/10 hover:border-[#795558]/30'}`}>{s}</button>
+                                                    <button key={s} type="button" onClick={() => handleServiceSelect(s)} className={`px-3 py-4 md:px-4 md:py-5 rounded-xl md:rounded-2xl border transition-all text-[8px] md:text-[10px] font-bold uppercase tracking-widest ${formData.service === s ? 'bg-[#795558] text-white border-[#795558] shadow-lg' : 'bg-white text-[#795558]/60 border-[#795558]/10 hover:border-[#795558]/30'}`}>{s}</button>
                                                 ))}
                                             </div>
                                         </div>
-                                        <div className="grid md:grid-cols-2 gap-8">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                             <div className="space-y-3">
-                                                <label className="text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1">Status do Projeto</label>
-                                                <select name="isRedesign" value={formData.isRedesign} onChange={handleChange} className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none rounded-t-xl">
+                                                <label className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1">Status do Projeto</label>
+                                                <select name="isRedesign" value={formData.isRedesign} onChange={handleChange} className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none rounded-t-xl text-sm md:text-base">
                                                     <option value="">Selecione...</option>
                                                     <option value="Criação do Zero">Criação do Zero</option>
                                                     <option value="Redesign / Modernização">Redesign / Modernização</option>
                                                 </select>
                                             </div>
                                             <div className="space-y-3">
-                                                <label className="text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1 flex items-center gap-2"><Layout className="w-3 h-3" /> Itens Específicos Necessários</label>
-                                                <input type="text" name="deliverables" value={formData.deliverables} onChange={handleChange} placeholder="Ex: Cartão, Timbrado, Posts..." className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none rounded-t-xl" />
+                                                <label className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1 flex items-center gap-2"><Layout className="w-3 h-3" /> Itens Específicos Necessários</label>
+                                                <input type="text" name="deliverables" value={formData.deliverables} onChange={handleChange} placeholder="Ex: Cartão, Posts..." className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none rounded-t-xl text-sm md:text-base" />
                                             </div>
                                         </div>
                                     </motion.div>
@@ -372,29 +393,29 @@ export function BriefingPage() {
                                 {/* Step 4: Estética */}
                                 {step === 4 && (
                                     <motion.div key="s4" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-8">
-                                        <div className="grid md:grid-cols-2 gap-8">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                             <div className="space-y-3">
-                                                <label className="text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1 flex items-center gap-2"><Target className="w-3 h-3" /> Objetivo do Projeto</label>
-                                                <textarea name="purpose" value={formData.purpose} onChange={handleChange} rows={2} placeholder="O que deseja alcançar?" className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none rounded-t-xl resize-none" />
+                                                <label className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1 flex items-center gap-2"><Target className="w-3 h-3" /> Objetivo do Projeto</label>
+                                                <textarea name="purpose" value={formData.purpose} onChange={handleChange} rows={2} placeholder="O que deseja alcançar?" className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none rounded-t-xl resize-none text-sm md:text-base" />
                                             </div>
                                             <div className="space-y-3">
-                                                <label className="text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1 flex items-center gap-2"><Users className="w-3 h-3" /> Público-alvo</label>
-                                                <textarea name="audience" value={formData.audience} onChange={handleChange} rows={2} placeholder="Para quem estamos falando?" className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none rounded-t-xl resize-none" />
+                                                <label className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1 flex items-center gap-2"><Users className="w-3 h-3" /> Público-alvo</label>
+                                                <textarea name="audience" value={formData.audience} onChange={handleChange} rows={2} placeholder="Para quem falamos?" className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none rounded-t-xl resize-none text-sm md:text-base" />
                                             </div>
                                         </div>
-                                        <div className="grid md:grid-cols-2 gap-8">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                             <div className="space-y-3">
-                                                <label className="text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1">3 Palavras que definem a marca</label>
-                                                <input type="text" name="keywords" value={formData.keywords} onChange={handleChange} placeholder="Ex: Leveza, Luxo, Inovação" className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none rounded-t-xl" />
+                                                <label className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1">3 Palavras que definem a marca</label>
+                                                <input type="text" name="keywords" value={formData.keywords} onChange={handleChange} placeholder="Ex: Leveza, Luxo" className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none rounded-t-xl text-sm md:text-base" />
                                             </div>
                                             <div className="space-y-3">
-                                                <label className="text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1 flex items-center gap-2"><Palette className="w-3 h-3" /> Preferências de Cores</label>
-                                                <input type="text" name="colors" value={formData.colors} onChange={handleChange} placeholder="Mencione tons preferidos..." className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none rounded-t-xl" />
+                                                <label className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1 flex items-center gap-2"><Palette className="w-3 h-3" /> Preferências de Cores</label>
+                                                <input type="text" name="colors" value={formData.colors} onChange={handleChange} placeholder="Tons preferidos..." className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none rounded-t-xl text-sm md:text-base" />
                                             </div>
                                         </div>
                                         <div className="space-y-3">
-                                            <label className="text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1">Inspirações ou Links (Opcional)</label>
-                                            <input type="text" name="references" value={formData.references} onChange={handleChange} placeholder="Pinterest, Instagram..." className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none rounded-t-xl" />
+                                            <label className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1">Inspirações ou Links (Opcional)</label>
+                                            <input type="text" name="references" value={formData.references} onChange={handleChange} placeholder="Pinterest, Instagram..." className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none rounded-t-xl text-sm md:text-base" />
                                         </div>
                                     </motion.div>
                                 )}
@@ -402,14 +423,14 @@ export function BriefingPage() {
                                 {/* Step 5: Logística */}
                                 {step === 5 && (
                                     <motion.div key="s5" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-10">
-                                        <div className="grid md:grid-cols-2 gap-10">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
                                             <div className="space-y-4">
-                                                <label className="text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1 flex items-center gap-2"><Clock className="w-3 h-3" /> Prazo Estimado</label>
-                                                <input type="text" name="deadline" required value={formData.deadline} onChange={handleChange} placeholder="Para quando precisa?" className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none rounded-t-xl" />
+                                                <label className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1 flex items-center gap-2"><Clock className="w-3 h-3" /> Prazo Estimado</label>
+                                                <input type="text" name="deadline" required value={formData.deadline} onChange={handleChange} placeholder="Para quando precisa?" className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none rounded-t-xl text-sm md:text-base" />
                                             </div>
                                             <div className="space-y-4">
-                                                <label className="text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1">Orçamento Previsto</label>
-                                                <select name="investment" required value={formData.investment} onChange={handleChange} className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none rounded-t-xl">
+                                                <label className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1">Orçamento Previsto</label>
+                                                <select name="investment" required value={formData.investment} onChange={handleChange} className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none rounded-t-xl text-sm md:text-base">
                                                     <option value="">Selecione...</option>
                                                     <option value="R$ 1.000 - R$ 2.500">R$ 1.000 - R$ 2.500</option>
                                                     <option value="R$ 2.500 - R$ 5.000">R$ 2.500 - R$ 5.000</option>
@@ -418,8 +439,8 @@ export function BriefingPage() {
                                                 </select>
                                             </div>
                                         </div>
-                                        <div className="p-8 bg-[#FCF6EF]/30 rounded-3xl border border-[#795558]/5">
-                                            <p className="text-[11px] text-[#795558]/50 leading-relaxed font-light italic">
+                                        <div className="p-6 md:p-8 bg-[#FCF6EF]/30 rounded-2xl md:rounded-3xl border border-[#795558]/5">
+                                            <p className="text-[10px] md:text-[11px] text-[#795558]/50 leading-relaxed font-light italic">
                                                 "Ao clicar em finalizar, um dossiê estratégico em PDF será gerado com todas as suas informações.
                                                 Terei o prazer de analisar cada detalhe para transformarmos sua marca em algo inesquecível."
                                             </p>
@@ -429,18 +450,18 @@ export function BriefingPage() {
                             </AnimatePresence>
 
                             {/* Nav */}
-                            <div className="flex items-center justify-between pt-12 border-t border-[#795558]/5">
+                            <div className="flex items-center justify-between pt-10 md:pt-12 border-t border-[#795558]/5 mt-8 md:mt-12">
                                 {step > 1 ? (
-                                    <button type="button" onClick={prevStep} className="text-[10px] font-black uppercase tracking-widest text-[#795558]/40 hover:text-[#795558] transition-colors">Anterior</button>
+                                    <button type="button" onClick={prevStep} className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#795558]/40 hover:text-[#795558] transition-colors">Anterior</button>
                                 ) : <div />}
 
                                 {step < 5 ? (
-                                    <motion.button type="button" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={nextStep} disabled={step === 3 && !formData.service} className={`bg-[#795558] text-white px-10 py-5 rounded-2xl font-bold uppercase tracking-[0.2em] text-[10px] shadow-xl ${step === 3 && !formData.service ? 'opacity-50' : ''}`}>Próximo Passo</motion.button>
+                                    <motion.button type="button" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={nextStep} disabled={step === 3 && !formData.service} className={`bg-[#795558] text-white px-8 py-4 md:px-10 md:py-5 rounded-xl md:rounded-2xl font-bold uppercase tracking-[0.2em] text-[9px] md:text-[10px] shadow-xl ${step === 3 && !formData.service ? 'opacity-50' : ''}`}>Próximo Passo</motion.button>
                                 ) : (
-                                    <motion.button type="submit" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} disabled={isSubmitting} className="bg-[#795558] text-white pl-10 pr-4 py-3 rounded-full flex items-center gap-6 font-bold uppercase tracking-[0.2em] text-[10px] shadow-2xl group">
-                                        {isSubmitting ? 'Gerando Dossiê...' : 'Finalizar e Enviar'}
-                                        <div className="w-12 h-12 rounded-full bg-white text-[#795558] flex items-center justify-center group-hover:rotate-12 transition-transform">
-                                            <Send className="w-5 h-5" />
+                                    <motion.button type="submit" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} disabled={isSubmitting} className="bg-[#795558] text-white pl-8 pr-3 py-2 md:pl-10 md:pr-4 md:py-3 rounded-full flex items-center gap-4 md:gap-6 font-bold uppercase tracking-[0.2em] text-[9px] md:text-[10px] shadow-2xl group">
+                                        {isSubmitting ? 'Gerando Dossiê...' : 'Finalizar'}
+                                        <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white text-[#795558] flex items-center justify-center group-hover:rotate-12 transition-transform">
+                                            <Send className="w-4 h-4 md:w-5 md:h-5" />
                                         </div>
                                     </motion.button>
                                 )}
@@ -450,7 +471,7 @@ export function BriefingPage() {
                 </div>
 
                 <div className="mt-12 text-center opacity-30">
-                    <p className="text-[9px] font-bold uppercase tracking-[0.4em] text-[#795558]">&copy; 2024 Anna Designer Gráfico &bull; Processo Criativo Exclusivo</p>
+                    <p className="text-[8px] md:text-[9px] font-bold uppercase tracking-[0.4em] text-[#795558]">&copy; 2026 Anna Designer Gráfico &bull; Processo Criativo Exclusivo</p>
                 </div>
             </motion.div>
         </div>

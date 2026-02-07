@@ -1,7 +1,8 @@
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Grid, Heart, MessageCircle, Bookmark, Compass, Layout, User } from 'lucide-react';
+import { X, Sparkles, ArrowUpRight } from 'lucide-react';
 import { Project } from './ProjectsSection';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import { getImagePath } from '@/app/utils/imagePath';
 
 interface ProjectFeedProps {
   isOpen: boolean;
@@ -15,111 +16,138 @@ export function ProjectFeed({ isOpen, onClose, projects, onSelectProject }: Proj
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-white z-[100] overflow-y-auto custom-scrollbar"
+          initial={{ opacity: 0, clipPath: 'circle(0% at 50% 50%)' }}
+          animate={{ opacity: 1, clipPath: 'circle(150% at 50% 50%)' }}
+          exit={{ opacity: 0, clipPath: 'circle(0% at 50% 50%)' }}
+          transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
+          className="fixed inset-0 bg-[#FCF6EF] z-[10000] overflow-y-auto custom-scrollbar"
         >
-          {/* Header Bar */}
-          <div className="sticky top-0 bg-white/80 backdrop-blur-md border-b border-gray-100 z-10 px-6 py-4">
-            <div className="max-w-4xl mx-auto flex justify-between items-center">
-              <div className="flex items-center gap-2">
-                <Compass className="w-6 h-6 text-[#795558]" />
-                <h2 className="font-serif text-xl text-[#795558] font-bold">Explorar Projetos</h2>
-              </div>
-              <button 
-                onClick={onClose}
-                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-              >
-                <X className="w-6 h-6 text-gray-500" />
-              </button>
-            </div>
+          {/* Close Button - Abstract Floating */}
+          <motion.button
+            initial={{ opacity: 0, rotate: -45 }}
+            animate={{ opacity: 1, rotate: 0 }}
+            transition={{ delay: 0.8 }}
+            onClick={onClose}
+            className="fixed top-8 right-8 z-[10001] w-14 h-14 bg-[#795558] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all group"
+          >
+            <X className="w-5 h-5 group-hover:rotate-90 transition-transform duration-500" />
+          </motion.button>
+
+          {/* Immersive Scroll Watermark */}
+          <div className="fixed inset-0 pointer-events-none overflow-hidden select-none opacity-[0.03]">
+            <motion.div
+              animate={{
+                y: [0, -20, 0],
+                rotate: [2, 3, 2]
+              }}
+              transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+              className="absolute top-1/4 -left-20 text-[60rem] font-serif italic text-[#795558] leading-none"
+            >
+              Anna
+            </motion.div>
           </div>
 
-          <div className="max-w-4xl mx-auto px-4 py-8">
-            {/* Profile Info (Simulating Instagram Header) */}
-            <div className="flex items-center gap-8 mb-12 px-4">
-               <div className="w-20 h-20 md:w-32 md:h-32 rounded-full border-2 border-[#795558]/20 p-1">
-                  <div className="w-full h-full rounded-full overflow-hidden">
-                    <img 
-                      src={`${import.meta.env.BASE_URL}assets/profile_anna.jpg`}
-                      alt="Anna"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-               </div>
-               <div className="flex-1">
-                  <div className="flex flex-wrap items-center gap-4 mb-4">
-                    <h3 className="text-xl font-bold text-gray-800">annadsgr</h3>
-                    <button className="bg-[#795558] text-white px-4 py-1.5 rounded-lg text-sm font-bold">Seguir</button>
-                    <button className="bg-gray-100 text-gray-800 px-4 py-1.5 rounded-lg text-sm font-bold">Mensagem</button>
-                  </div>
-                  <div className="flex gap-6 mb-4 text-sm">
-                    <span><strong>{projects.length}</strong> publicações</span>
-                    <span><strong>19</strong> seguidores</span>
-                    <span><strong>17</strong> seguindo</span>
-                  </div>
-                  <div className="text-sm">
-                    <p className="font-bold">Designer Gráfico | Identidade Visual</p>
-                    <p className="text-gray-600 font-light leading-snug whitespace-pre-line">
-                      Design que comunica com alma
-                      Minimalista • Criativo • Estratégico
-                      📩 Orçamentos no direct
-                    </p>
-                  </div>
-               </div>
-            </div>
+          <div className="max-w-7xl mx-auto px-6 md:px-12 py-24 md:py-40 relative z-10">
+            {/* Editorial Header */}
+            <header className="mb-24 md:mb-40 flex flex-col md:flex-row md:items-end justify-between gap-12">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.4, duration: 1 }}
+                className="max-w-2xl space-y-8"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-[1px] bg-[#795558]/20" />
+                  <span className="text-[10px] font-black uppercase tracking-[0.5em] text-[#795558]/40 italic">Exposição Digital 2026</span>
+                </div>
+                <h2 className="text-7xl md:text-9xl lg:text-[11rem] font-serif text-[#795558] leading-[0.8] tracking-tight">
+                  Legado <br /> <span className="italic font-light opacity-60">Criativo</span>
+                </h2>
+              </motion.div>
 
-            {/* Grid vs Feed Icons */}
-            <div className="border-t border-gray-100 flex justify-center gap-12 mb-0">
-               <button className="flex items-center gap-2 py-4 border-t-2 border-black -mt-[2px] transition-all">
-                  <Grid className="w-3.5 h-3.5" />
-                  <span className="text-[11px] font-black uppercase tracking-widest">POSTS</span>
-               </button>
-               <button className="flex items-center gap-2 py-4 text-gray-400 hover:text-gray-500 transition-colors">
-                  <Layout className="w-3.5 h-3.5" />
-                  <span className="text-[11px] font-bold uppercase tracking-widest">REELS</span>
-               </button>
-               <button className="flex items-center gap-2 py-4 text-gray-400 hover:text-gray-500 transition-colors">
-                  <Bookmark className="w-3.5 h-3.5" />
-                  <span className="text-[11px] font-bold uppercase tracking-widest">SALVOS</span>
-               </button>
-               <button className="flex items-center gap-2 py-4 text-gray-400 hover:text-gray-500 transition-colors md:flex hidden">
-                  <User className="w-3.5 h-3.5" />
-                  <span className="text-[11px] font-bold uppercase tracking-widest">MARCADOS</span>
-               </button>
-            </div>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 1 }}
+                className="md:w-1/3 space-y-6"
+              >
+                <p className="text-lg md:text-xl text-[#795558]/70 font-light leading-relaxed font-serif italic text-balance">
+                  "Um mergulho profundo no acervo, onde cada projeto é uma peça única de estratégia visual."
+                </p>
+                <div className="flex gap-4">
+                  <Sparkles className="w-5 h-5 text-[#795558]/20" />
+                  <div className="h-[1px] flex-1 bg-[#795558]/10 mt-2.5" />
+                </div>
+              </motion.div>
+            </header>
 
-            {/* Instagram Style Grid */}
-            <div className="grid grid-cols-3 gap-1 md:gap-6">
-              {projects.map((project) => (
+            {/* Curated Archive Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-16 md:gap-32">
+              {projects.map((project, index) => (
                 <motion.div
                   key={project.id}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="relative aspect-square cursor-pointer group overflow-hidden"
+                  initial={{ opacity: 0, y: 60 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 + index * 0.2, duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
+                  className="group relative flex flex-col gap-10"
                   onClick={() => onSelectProject(project)}
                 >
-                  <ImageWithFallback
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  
-                  {/* Overlay on Hover */}
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4 md:gap-8 text-white">
-                    <div className="flex items-center gap-1.5">
-                      <Heart className="w-5 h-5 fill-white" />
-                      <span className="font-bold">128</span>
+                  {/* Metadata Header */}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-6">
+                      <span className="text-[11px] font-serif italic text-[#795558]/40">#{index + 1}</span>
+                      <div className="w-8 h-[1px] bg-[#795558]/10" />
+                      <span className="text-[9px] font-black uppercase tracking-[0.3em] text-[#795558]/30">{project.category}</span>
                     </div>
-                    <div className="flex items-center gap-1.5">
-                      <MessageCircle className="w-5 h-5 fill-white" />
-                      <span className="font-bold">14</span>
+                    <span className="text-[9px] font-bold text-[#795558]/20 uppercase tracking-widest">{project.year}</span>
+                  </div>
+
+                  {/* High-End Framing */}
+                  <div className="relative aspect-[16/10] sm:aspect-video rounded-[3rem] overflow-hidden bg-white p-4 md:p-6 shadow-[0_40px_80px_-20px_rgba(121,85,88,0.1)] group-hover:shadow-2xl group-hover:shadow-[#795558]/10 transition-all duration-1000">
+                    <div className="relative h-full w-full rounded-[2rem] overflow-hidden">
+                      <ImageWithFallback
+                        src={getImagePath(project.image)}
+                        alt={project.title}
+                        className="w-full h-full object-cover grayscale-[40%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[2s]"
+                      />
+
+                      {/* Immersive Hover Fragment */}
+                      <div className="absolute inset-0 bg-[#795558]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 backdrop-blur-[2px]" />
+
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-white rounded-full flex items-center justify-center scale-0 group-hover:scale-100 transition-all duration-500 shadow-2xl">
+                        <ArrowUpRight className="w-6 h-6 text-[#795558]" />
+                      </div>
                     </div>
+                  </div>
+
+                  {/* Title & Entry */}
+                  <div className="space-y-4 max-w-lg">
+                    <h3 className="text-4xl md:text-6xl font-serif text-[#795558] leading-tight group-hover:pl-4 transition-all duration-700">
+                      {project.title}
+                    </h3>
+                    <div className="h-[1px] w-12 bg-[#795558]/20 group-hover:w-full transition-all duration-1000" />
+                    <p className="text-sm text-[#795558]/60 font-light leading-relaxed italic">
+                      {project.description.slice(0, 100)}...
+                    </p>
                   </div>
                 </motion.div>
               ))}
             </div>
+
+            {/* Conceptual Footer */}
+            <footer className="mt-40 md:mt-80 pt-20 border-t border-[#795558]/10 flex flex-col items-center gap-12">
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="w-24 h-24 rounded-full border border-dashed border-[#795558]/20 flex items-center justify-center p-4"
+              >
+                <Sparkles className="w-8 h-8 text-[#795558]/10" />
+              </motion.div>
+              <div className="text-center space-y-4">
+                <p className="text-[10px] font-black uppercase tracking-[0.8em] text-[#795558]/30">Fim da Exposição</p>
+                <p className="text-xs font-serif italic text-[#795558]/40">Anna Designer Gráfico &copy; 2026</p>
+              </div>
+            </footer>
           </div>
         </motion.div>
       )}

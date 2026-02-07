@@ -30,7 +30,7 @@ const services = [
 
 export function ServicesList() {
   return (
-    <section id="servicos" className="py-32 px-6 md:px-12 bg-white relative overflow-hidden">
+    <section id="servicos" className="py-16 md:py-24 px-6 md:px-12 bg-white relative overflow-hidden">
       {/* Background Ornaments */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-[#FCF6EF] rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#795558]/3 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2 pointer-events-none" />
@@ -46,7 +46,7 @@ export function ServicesList() {
             <Heart className="w-3 h-3 text-[#795558]/40" />
             <span className="text-[10px] uppercase tracking-[0.4em] text-[#795558]/60 font-bold">Especialidades</span>
           </motion.div>
-          
+
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -56,7 +56,7 @@ export function ServicesList() {
           >
             Como posso te <span className="italic">ajudar</span>?
           </motion.h2>
-          
+
           <div className="w-12 h-[1.5px] bg-[#795558]/20 mx-auto" />
         </div>
 
@@ -86,8 +86,8 @@ export function ServicesList() {
                 <p className="text-gray-500 font-light leading-relaxed text-sm max-w-sm">
                   {service.description}
                 </p>
-                
-                <motion.div 
+
+                <motion.div
                   initial={{ width: 0 }}
                   whileInView={{ width: "100%" }}
                   viewport={{ once: true }}
@@ -105,9 +105,9 @@ export function ServicesList() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 1 }}
-          className="mt-32 text-center"
+          className="mt-16 text-center"
         >
-          <button 
+          <button
             onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })}
             className="inline-flex items-center gap-4 group"
           >
@@ -115,7 +115,7 @@ export function ServicesList() {
               Ver todos os detalhes
             </span>
             <div className="p-3 rounded-full bg-[#FCF6EF] text-[#795558] group-hover:bg-[#795558] group-hover:text-white transition-all duration-500 group-hover:translate-x-2">
-               <Sparkles className="w-4 h-4" />
+              <Sparkles className="w-4 h-4" />
             </div>
           </button>
         </motion.div>

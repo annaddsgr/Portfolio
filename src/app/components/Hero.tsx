@@ -1,207 +1,185 @@
 import { motion, useScroll, useTransform } from "motion/react";
-import { ChevronDown, Palette, PenTool, Type, Sparkles } from "lucide-react";
 import { useRef } from "react";
+import { Palette, PenTool, Type, Sparkles, ArrowRight } from "lucide-react";
+import { Magnetic } from './Magnetic';
 
 export function Hero() {
   const containerRef = useRef(null);
   const { scrollY } = useScroll();
 
-  // Efeito Parallax suave para elementos flutuantes
-  const y1 = useTransform(scrollY, [0, 500], [0, -100]);
-  const y2 = useTransform(scrollY, [0, 500], [0, -150]);
-  const rotate = useTransform(scrollY, [0, 500], [0, 45]);
+  // Advanced Parallax & Kinetic Transforms
+  const y1 = useTransform(scrollY, [0, 500], [0, -150]);
+  const y2 = useTransform(scrollY, [0, 500], [0, -250]);
+  const y3 = useTransform(scrollY, [0, 500], [0, 100]);
+  const rotateSlower = useTransform(scrollY, [0, 500], [0, 15]);
 
   const scrollToContent = () => {
-    window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
+    document.getElementById("projetos")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[110vh] flex items-center justify-start overflow-hidden bg-[#FCF6EF] py-20"
+      className="relative min-h-[90vh] md:min-h-screen flex items-center justify-start overflow-hidden bg-[#FCF6EF] py-16 md:py-0"
     >
-      {/* Background Decorative Shapes - "Never done before" style */}
+      {/* Background Cinematic Atmosphere */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Large Organic Blob */}
         <motion.div
           style={{ y: y1 }}
-          className="absolute -top-[10%] -right-[5%] w-[60%] h-[80%] bg-[#795558]/5 rounded-full blur-[120px] mix-blend-multiply"
+          className="absolute -top-[5%] -right-[5%] w-[70%] h-[90%] bg-[#795558]/5 rounded-full blur-[140px] mix-blend-multiply"
         />
         <motion.div
           style={{ y: y2 }}
-          className="absolute bottom-0 left-[-10%] w-[50%] h-[60%] bg-[#FFDAF0]/30 rounded-full blur-[100px]"
+          className="absolute bottom-[-10%] left-[-10%] w-[60%] h-[70%] bg-[#FFDAF0]/20 rounded-full blur-[120px]"
         />
+
+        {/* Editorial Grid Lines */}
+        <div className="absolute inset-0 opacity-[0.03]">
+          <div className="absolute top-0 left-1/3 w-[1px] h-full bg-[#795558]" />
+          <div className="absolute top-1/2 left-0 w-full h-[1px] bg-[#795558]" />
+        </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 w-full grid lg:grid-cols-12 gap-12 items-center relative z-10">
 
-        {/* Text Content - Asymmetric left alignment */}
-        <div className="lg:col-span-7">
+        {/* Text Content: The Manifesto */}
+        <div className="lg:col-span-7 pt-12 md:pt-0">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -60 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, ease: "circOut" }}
+            transition={{ duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#795558] text-white text-[10px] uppercase tracking-[0.3em] font-bold mb-8 shadow-lg">
-              <Sparkles className="w-3 h-3" /> Designer & Estrategista
+            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-[#795558]/10 bg-white shadow-sm mb-6 md:mb-10 lg:scale-100 scale-90 origin-left">
+              <Sparkles className="w-3.5 h-3.5 text-[#795558] animate-pulse" />
+              <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.4em] text-[#795558]">Visual Strategist & Designer</span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-serif text-[#795558] leading-[1] md:leading-[0.9] mb-8 relative">
-              <span className="block italic">Design</span>
+            <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-serif text-[#795558] leading-[0.85] mb-8 md:mb-12 tracking-tight">
+              <span className="block italic opacity-40">Design</span>
               <span className="block relative">
                 com alma
                 <motion.div
-                  className="absolute -right-8 -top-2 md:-right-12 lg:-right-20 md:-top-4 lg:-top-8 hidden xs:block"
-                  animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.1, 1] }}
-                  transition={{ duration: 4, repeat: Infinity }}
+                  animate={{
+                    rotate: [15, 20, 15],
+                    y: [0, -10, 0]
+                  }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute -right-8 -top-8 hidden xl:block"
                 >
-                  <PenTool className="w-8 h-8 md:w-12 lg:w-20 md:h-12 lg:h-20 opacity-20" />
+                  <PenTool className="w-24 h-24 text-[#795558]/10" />
                 </motion.div>
               </span>
             </h1>
 
-            <p className="text-lg md:text-2xl text-gray-600 font-light max-w-xl leading-relaxed mb-12">
-              Transformo o invisível em <span className="font-medium text-[#795558]">identidade</span>.
-              Aqui, a estética não é apenas beleza, é uma conversa silenciosa entre sua marca e o mundo.
-            </p>
+            <div className="max-w-xl space-y-8 md:space-y-12">
+              <p className="text-lg md:text-2xl lg:text-3xl text-[#795558]/60 font-serif italic leading-tight text-balance">
+                "Transformo essências invisíveis em realidades visuais potentes e intencionais."
+              </p>
 
-            <div className="flex flex-wrap gap-6">
-              <motion.button
-                whileHover={{ scale: 1.05, rotate: -1 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => document.getElementById("projetos")?.scrollIntoView({ behavior: "smooth" })}
-                className="group relative px-10 py-5 bg-[#795558] text-white rounded-2xl overflow-hidden shadow-2xl transition-all"
-              >
-                <div className="absolute inset-0 bg-black/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-                <span className="relative z-10 font-bold tracking-wide">Explorar Universo</span>
-              </motion.button>
+              <div className="flex flex-col sm:flex-row items-center gap-6 md:gap-8">
+                <Magnetic>
+                  <button
+                    onClick={scrollToContent}
+                    className="group relative px-8 md:px-10 py-4 md:py-5 bg-[#795558] text-white rounded-full overflow-hidden shadow-2xl transition-all"
+                  >
+                    <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="flex items-center gap-4 relative z-10">
+                      <span className="font-black uppercase tracking-[0.2em] text-[9px] md:text-[10px]">Ver Portfólio</span>
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </button>
+                </Magnetic>
 
-              <button
-                onClick={() => document.getElementById("contato")?.scrollIntoView({ behavior: "smooth" })}
-                className="px-8 py-5 text-[#795558] font-medium border-b-2 border-[#795558]/20 hover:border-[#795558] transition-all"
-              >
-                Iniciar um diálogo
-              </button>
+                <div className="flex items-center gap-4 text-[#795558]/40">
+                  <div className="w-8 h-[1px] bg-current" />
+                  <span className="text-[8px] md:text-[9px] font-bold uppercase tracking-[0.3em]">Criação sob Medida</span>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
 
-        {/* Floating "Moodboard" Elements - Refined composition */}
-        <div className="lg:col-span-5 relative hidden lg:block">
-          <div className="relative w-full h-[650px]">
-            {/* Typography Asset - Moved to Top Left */}
-            <motion.div
-              style={{ y: y2, rotate: rotate }}
-              className="absolute top-0 left-0 bg-white p-6 shadow-2xl rounded-full border border-gray-100 w-32 h-32 flex items-center justify-center z-10"
-            >
-              <Type className="w-12 h-12 text-[#795558]" />
-              <div className="absolute -bottom-2 -right-2 bg-[#795558] text-white p-2 rounded-lg text-[8px] font-bold">
-                Aa
+        {/* The Artistic Composition */}
+        <div className="lg:col-span-5 relative hidden lg:block h-[600px] xl:h-[700px]">
+          {/* Kinetic Stickers Layer */}
+          <motion.div
+            style={{ y: y1, rotate: rotateSlower }}
+            className="absolute top-12 xl:top-20 right-0 z-20 scale-75 xl:scale-100"
+          >
+            <div className="bg-white p-6 rounded-[2.2rem] shadow-2xl border border-[#795558]/5 flex flex-col gap-4 w-32 xl:w-40">
+              <div className="flex justify-between items-center">
+                <span className="text-[8px] font-black uppercase text-gray-300 tracking-widest">Type</span>
+                <Type className="w-3 h-3 text-[#795558]/20" />
               </div>
-            </motion.div>
+              <div className="text-3xl xl:text-4xl font-serif text-[#795558] italic">Aa</div>
+            </div>
+          </motion.div>
 
-            {/* Graphic/Pen Sticker */}
-            <motion.div
-              style={{ y: y1, rotate: -10 }}
-              className="absolute top-1/2 -left-12 bg-white p-5 shadow-2xl rounded-3xl border border-gray-100 w-24 h-24 flex items-center justify-center z-20"
-            >
-              <PenTool className="w-10 h-10 text-[#795558]" />
-              <div className="absolute -top-2 -left-2 bg-[#FFDAF0] text-[#795558] p-1.5 rounded-full">
-                <Sparkles className="w-3 h-3" />
-              </div>
-            </motion.div>
+          <motion.div
+            style={{ y: y2, rotate: -5 }}
+            className="absolute bottom-32 xl:bottom-40 -left-6 xl:-left-10 z-20 scale-75 xl:scale-100"
+          >
+            <div className="bg-[#FFDAF0] p-5 xl:p-6 rounded-full shadow-2xl border-4 border-white flex items-center justify-center w-28 h-28 xl:w-32 xl:h-32 rotate-12">
+              <Palette className="w-10 xl:w-12 h-10 xl:h-12 text-[#795558]" />
+            </div>
+          </motion.div>
 
-            {/* Color Palette Sticker - Normal / Static */}
-            <div className="absolute top-0 -right-20 bg-white p-4 shadow-2xl rounded-3xl border border-gray-100 w-48 z-0">
-              <div className="flex justify-between items-center mb-4">
-                <span className="text-[10px] font-bold text-gray-300 uppercase tracking-widest">Palette</span>
-                <Palette className="w-3 h-3 text-gray-300" />
+          {/* Central Editorial Piece */}
+          <motion.div
+            style={{ y: y3 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] xl:w-[350px] aspect-[4/5] z-10"
+          >
+            <div className="w-full h-full bg-[#FCF6EF] rounded-[2.5rem] xl:rounded-[3rem] shadow-[40px_80px_120px_-20px_rgba(121,85,88,0.25)] border-[1rem] xl:border-[1.5rem] border-white overflow-hidden flex flex-col p-8 xl:p-12 relative group cursor-none">
+              {/* Internal Texture Overlay */}
+              <div className="absolute inset-0 opacity-[0.02] mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')]" />
+
+              <div className="relative z-10 flex justify-between">
+                <span className="text-[9px] font-black uppercase tracking-[0.5em] text-[#795558]/40 italic">Vol. 01</span>
+                <Sparkles className="w-4 h-4 text-[#795558]/20" />
               </div>
-              <div className="flex gap-2">
-                <div className="w-full h-12 bg-[#795558] rounded-xl shadow-sm" />
-                <div className="w-full h-12 bg-[#FCF6EF] rounded-xl border border-gray-100 shadow-sm" />
-                <div className="w-full h-12 bg-[#FFDAF0] rounded-xl shadow-sm" />
+
+              <div className="mt-auto relative z-10 space-y-4 xl:space-y-6">
+                <h2 className="text-6xl xl:text-7xl font-serif text-[#795558] italic leading-tight">A.</h2>
+                <div className="w-12 xl:w-16 h-[2px] bg-[#795558]/10" />
+                <p className="text-[9px] xl:text-[10px] font-bold uppercase tracking-[0.4em] text-[#795558]/40 leading-relaxed">
+                  Curadoria Visual <br /> & Estratégia
+                </p>
               </div>
+
+              {/* Liquid Interaction Layer inside card */}
+              <div className="absolute inset-0 bg-[#795558]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             </div>
 
-            {/* Editorial "Identity" Composition - Sophisticated & Minimalist */}
+            {/* Decorative Circle Script */}
             <motion.div
-              initial={{ rotate: -2, opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              whileHover={{ rotate: 0, scale: 1.02 }}
-              className="absolute bottom-0 right-0 w-80 h-[480px] z-0 flex items-center justify-center p-4"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+              className="absolute -top-12 -right-12 w-44 h-44 pointer-events-none"
             >
-              {/* Main Editorial Card */}
-              <div className="relative w-full h-full bg-[#FCF6EF] rounded-2xl shadow-[40px_40px_80px_rgba(121,85,88,0.12)] border border-white/50 overflow-hidden flex flex-col p-10 justify-between">
-                {/* Silk Texture Overlay */}
-                <div className="absolute inset-0 opacity-10 pointer-events-none mix-blend-overlay bg-[url('https://www.transparenttextures.com/patterns/silk.png')]" />
-
-                <div className="relative z-10 flex justify-between items-start">
-                  <span className="text-[10px] font-black uppercase tracking-[0.5em] text-[#795558]/40 italic">Edition 2026</span>
-                  <Sparkles className="w-5 h-5 text-[#795558]/20" />
-                </div>
-
-                <div className="relative z-10">
-                  <h2 className="text-[12rem] font-serif italic text-[#795558]/5 absolute -top-24 -left-10 select-none">A</h2>
-                  <p className="text-4xl font-serif text-[#795558] leading-tight relative">
-                    Anna <br /> <span className="italic font-light">Design</span>
-                  </p>
-                  <div className="w-12 h-[1px] bg-[#795558]/30 my-6" />
-                  <p className="text-[10px] text-gray-400 uppercase tracking-[0.3em] leading-relaxed">
-                    Transformando visões em <br /> legados visuais potentes.
-                  </p>
-                </div>
-
-                <div className="relative z-10 flex items-end justify-between">
-                  <div className="flex gap-1">
-                    <div className="w-2 h-2 rounded-full bg-[#795558]" />
-                    <div className="w-2 h-2 rounded-full bg-[#FFDAF0]" />
-                    <div className="w-2 h-2 rounded-full bg-white border border-gray-100" />
-                  </div>
-                  <span className="text-[8px] font-mono text-gray-300 uppercase">#VisualStrategy</span>
-                </div>
-              </div>
-
-              {/* Floating "Authenticity" Seal */}
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute -top-12 -right-12 w-32 h-32 flex items-center justify-center z-20"
-              >
-                <svg viewBox="0 0 100 100" className="w-full h-full text-[#795558]/10 fill-current animate-spin-slow">
-                  <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none" />
-                  <text className="text-[8px] uppercase tracking-[0.2em] font-bold">
-                    <textPath xlinkHref="#circlePath">
-                      Curadoria Visual • Estratégia de Marca • Design com Alma •
-                    </textPath>
-                  </text>
-                </svg>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-2 h-2 bg-[#795558] rounded-full" />
-                </div>
-              </motion.div>
+              <svg viewBox="0 0 100 100" className="w-full h-full text-[#795558]/5 fill-current">
+                <path id="heroPath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none" />
+                <text className="text-[7.5px] uppercase tracking-[0.3em] font-black">
+                  <textPath xlinkHref="#heroPath">
+                    • Identidade Visual • Design com Alma • Estratégia de Marca •
+                  </textPath>
+                </text>
+              </svg>
             </motion.div>
-
-            {/* Floating Squiggle (SVG simulation) */}
-            <svg className="absolute top-1/2 left-1/4 w-32 h-32 text-[#795558]/10 -z-10" viewBox="0 0 100 100">
-              <path d="M10 50 Q 25 25, 50 50 T 90 50" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-            </svg>
-          </div>
+          </motion.div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.button
-        onClick={scrollToContent}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 text-[#795558] cursor-pointer"
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      {/* Futuristic Scroll Indicator */}
+      <motion.div
+        animate={{ y: [0, 15, 0] }}
+        transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4"
       >
-        <div className="flex flex-col items-center gap-2">
-          <span className="text-[10px] font-bold uppercase tracking-[0.4em] opacity-40">Scroll</span>
-          <ChevronDown size={24} className="opacity-40" />
-        </div>
-      </motion.button>
+        <span className="text-[8px] font-black uppercase tracking-[0.5em] text-[#795558]/30 rotate-90 mb-4">Scroll</span>
+        <div className="w-[1px] h-16 bg-gradient-to-b from-[#795558]/40 to-transparent" />
+      </motion.div>
     </section>
   );
 }
