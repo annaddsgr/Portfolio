@@ -1,8 +1,8 @@
 {
-  "name": "portfolio-anna",
+  "name": "novo-portfolio",
   "private": true,
-  "version": "0.0.1",
-  "homepage": "https://annaddsgr.github.io/portifolio-anna",
+  "version": "0.1.0",
+  "homepage": "https://annaddsgr.github.io/Novo-Portfolio",
   "type": "module",
   "scripts": {
     "build": "vite build",
