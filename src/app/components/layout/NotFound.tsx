@@ -1,16 +1,20 @@
 import { motion } from "motion/react";
-import { Home, ArrowLeft, RefreshCcw, Search } from "lucide-react";
+import { Home, RefreshCcw, Search } from "lucide-react";
+
+import { useNavigate } from "react-router-dom";
 
 interface NotFoundProps {
   onBack?: () => void;
 }
 
 export function NotFound({ onBack }: NotFoundProps) {
+  const navigate = useNavigate();
+
   const handleGoHome = () => {
     if (onBack) {
       onBack();
     } else {
-      window.location.href = "/";
+      navigate("/");
     }
   };
 

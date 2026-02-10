@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import {
     ArrowLeft,
@@ -18,6 +19,7 @@ import { toast } from 'sonner';
 import { jsPDF } from 'jspdf';
 
 export function BriefingPage() {
+    const navigate = useNavigate();
     const [step, setStep] = useState(1);
     const [formData, setFormData] = useState({
         name: '',
@@ -255,8 +257,7 @@ export function BriefingPage() {
                     <div className="flex items-center gap-6">
                         <button
                             onClick={() => {
-                                window.history.pushState({}, '', import.meta.env.BASE_URL);
-                                window.dispatchEvent(new PopStateEvent('popstate'));
+                                navigate('/');
                             }}
                             className="group flex items-center gap-3 md:gap-4 text-[#795558]"
                         >

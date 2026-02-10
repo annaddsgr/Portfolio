@@ -1,10 +1,12 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
 import { getImagePath } from '@/app/utils/imagePath';
 import { Magnetic } from './Magnetic';
 
 export function Header() {
+  const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
@@ -23,11 +25,7 @@ export function Header() {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     } else {
-      window.history.pushState({}, '', `${import.meta.env.BASE_URL}`);
-      window.dispatchEvent(new PopStateEvent('popstate'));
-      setTimeout(() => {
-        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
+      navigate('/', { state: { scrollTo: id } });
     }
   };
 
@@ -41,8 +39,7 @@ export function Header() {
   ];
 
   const goBriefing = () => {
-    window.history.pushState({}, '', `${import.meta.env.BASE_URL}briefing`);
-    window.dispatchEvent(new PopStateEvent('popstate'));
+    navigate('/briefing');
   };
 
   return (
