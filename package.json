@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "build": "vite build",
-    "build:gh": "cross-env BASE_PATH=/Portfolio/vite build",
+    "build:gh": "vite build --base=/Portfolio/",
     "dev": "vite",
     "predeploy": "npm run build:gh",
     "deploy": "gh-pages -d dist"
