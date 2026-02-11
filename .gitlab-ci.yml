@@ -8,7 +8,7 @@ cache:
 pages:
   stage: deploy
   script:
-    - npm install
+    - npm ci --legacy-peer-deps
     # Build the project with the correct base path for GitLab Pages
     # Assuming the repository name is 'portfolio' (lowercase based on git url)
     - npm run build -- --base=/portfolio/
