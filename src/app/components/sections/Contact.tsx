@@ -38,11 +38,11 @@ export function Contact() {
   };
 
   return (
-    <section id="contato" className="py-16 md:py-24 px-6 md:px-12 bg-gradient-to-b from-white to-[#FCF6EF]">
+    <section id="contato" className="py-16 md:py-24 px-6 md:px-12 bg-gradient-to-b from-white to-[#FCF6EF] dark:from-[#1a1515] dark:to-[#1a1515] transition-colors duration-500">
       {/* Decorative Background */}
       <div className="max-w-7xl mx-auto relative">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-[#FFDAF0]/30 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#795558]/5 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+        <div className="absolute top-0 right-0 w-64 h-64 bg-[#FFDAF0]/30 dark:bg-white/5 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#795558]/5 dark:bg-white/5 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2 pointer-events-none" />
 
         {/* Section Header */}
         <div className="text-center mb-16 md:mb-24 px-4">
@@ -52,7 +52,7 @@ export function Contact() {
             viewport={{ once: true }}
             className="inline-flex items-center gap-2 mb-4 md:mb-6"
           >
-            <span className="text-[9px] md:text-[10px] uppercase tracking-[0.4em] text-[#795558]/60 font-bold">Contato</span>
+            <span className="text-[9px] md:text-[10px] uppercase tracking-[0.4em] text-[#795558]/60 dark:text-[#FCF6EF]/60 font-bold">Contato</span>
           </motion.div>
 
           <motion.h2
@@ -60,7 +60,7 @@ export function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
-            className="text-3xl md:text-6xl font-serif text-[#795558] mb-6 md:mb-8 font-light leading-tight"
+            className="text-3xl md:text-6xl font-serif text-[#795558] dark:text-[#FCF6EF] mb-6 md:mb-8 font-light leading-tight"
           >
             Vamos criar algo <span className="italic">único</span>?
           </motion.h2>
@@ -70,14 +70,14 @@ export function Contact() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="text-gray-400 font-light max-w-lg mx-auto text-sm md:text-base px-4"
+            className="text-gray-400 dark:text-white/40 font-light max-w-lg mx-auto text-sm md:text-base px-4"
           >
             Me conte sobre sua história. Prometo ler cada palavra com carinho e responder o mais breve possível.
           </motion.p>
         </div>
 
         {/* The Card */}
-        <div className="bg-white rounded-[2.5rem] md:rounded-[3rem] shadow-[0_30px_60px_-15px_rgba(121,85,88,0.1)] overflow-hidden flex flex-col lg:flex-row relative z-10 border border-[#795558]/5">
+        <div className="bg-white dark:bg-[#251e1e] rounded-[2.5rem] md:rounded-[3rem] shadow-[0_30px_60px_-15px_rgba(121,85,88,0.1)] overflow-hidden flex flex-col lg:flex-row relative z-10 border border-[#795558]/5 dark:border-white/10">
 
           {/* Left: Contact Info & Vibe */}
           <div className="lg:w-[40%] bg-[#795558] text-[#FCF6EF] p-10 md:p-16 flex flex-col justify-between relative overflow-hidden">
@@ -121,13 +121,13 @@ export function Contact() {
           </div>
 
           {/* Right: The Letter Form */}
-          <div className="lg:w-[60%] p-8 md:p-16">
-            <h4 className="text-xl md:text-3xl font-serif text-[#795558] mb-8 md:mb-10 text-center lg:text-left">Envie uma mensagem</h4>
+          <div className="lg:w-[60%] p-8 md:p-16 dark:bg-[#251e1e]">
+            <h4 className="text-xl md:text-3xl font-serif text-[#795558] dark:text-[#FCF6EF] mb-8 md:mb-10 text-center lg:text-left">Envie uma mensagem</h4>
 
             <form onSubmit={handleSubmit} className="space-y-6 md:space-y-10">
               <div className="grid md:grid-cols-2 gap-6 md:gap-8">
                 <div className="space-y-2">
-                  <label htmlFor="name" className="text-[9px] md:text-xs font-black uppercase tracking-widest text-[#795558]/50 ml-1">Seu Nome</label>
+                  <label htmlFor="name" className="text-[9px] md:text-xs font-black uppercase tracking-widest text-[#795558]/50 dark:text-white/30 ml-1">Seu Nome</label>
                   <input
                     type="text"
                     id="name"
@@ -136,11 +136,11 @@ export function Contact() {
                     onChange={handleChange}
                     required
                     placeholder="Como te chamam?"
-                    className="w-full bg-[#FCF6EF]/30 border-b border-[#795558]/10 px-4 py-3 md:py-4 text-[#795558] placeholder-[#795558]/30 focus:outline-none focus:border-[#795558] transition-colors rounded-t-lg hover:bg-[#FCF6EF]/50 text-sm md:text-base shadow-sm"
+                    className="w-full bg-[#FCF6EF]/30 dark:bg-white/5 border-b border-[#795558]/10 dark:border-white/10 px-4 py-3 md:py-4 text-[#795558] dark:text-[#FCF6EF] placeholder-[#795558]/30 focus:outline-none focus:border-[#795558] dark:focus:border-white transition-colors rounded-t-lg hover:bg-[#FCF6EF]/50 dark:hover:bg-white/10 text-sm md:text-base shadow-sm"
                   />
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="email" className="text-[9px] md:text-xs font-black uppercase tracking-widest text-[#795558]/50 ml-1">Seu Email</label>
+                  <label htmlFor="email" className="text-[9px] md:text-xs font-black uppercase tracking-widest text-[#795558]/50 dark:text-white/30 ml-1">Seu Email</label>
                   <input
                     type="email"
                     id="email"
@@ -149,37 +149,37 @@ export function Contact() {
                     onChange={handleChange}
                     required
                     placeholder="Para contato"
-                    className="w-full bg-[#FCF6EF]/30 border-b border-[#795558]/10 px-4 py-3 md:py-4 text-[#795558] placeholder-[#795558]/30 focus:outline-none focus:border-[#795558] transition-colors rounded-t-lg hover:bg-[#FCF6EF]/50 text-sm md:text-base shadow-sm"
+                    className="w-full bg-[#FCF6EF]/30 dark:bg-white/5 border-b border-[#795558]/10 dark:border-white/10 px-4 py-3 md:py-4 text-[#795558] dark:text-[#FCF6EF] placeholder-[#795558]/30 focus:outline-none focus:border-[#795558] dark:focus:border-white transition-colors rounded-t-lg hover:bg-[#FCF6EF]/50 dark:hover:bg-white/10 text-sm md:text-base shadow-sm"
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="message" className="text-[9px] md:text-xs font-black uppercase tracking-widest text-[#795558]/50 ml-1">Sua Mensagem</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={4}
-                  placeholder="Conte um pouco sobre sua ideia..."
-                  className="w-full bg-[#FCF6EF]/30 border-b border-[#795558]/10 px-4 py-3 md:py-4 text-[#795558] placeholder-[#795558]/30 focus:outline-none focus:border-[#795558] transition-colors resize-none rounded-t-lg hover:bg-[#FCF6EF]/50 text-sm md:text-base shadow-sm"
-                />
+                <label htmlFor="message" className="text-[9px] md:text-xs font-black uppercase tracking-widest text-[#795558]/50 dark:text-white/30 ml-1">Sua Mensagem</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    rows={4}
+                    placeholder="Conte um pouco sobre sua ideia..."
+                    className="w-full bg-[#FCF6EF]/30 dark:bg-white/5 border-b border-[#795558]/10 dark:border-white/10 px-4 py-3 md:py-4 text-[#795558] dark:text-[#FCF6EF] placeholder-[#795558]/30 focus:outline-none focus:border-[#795558] dark:focus:border-white transition-colors resize-none rounded-t-lg hover:bg-[#FCF6EF]/50 dark:hover:bg-white/10 text-sm md:text-base shadow-sm"
+                  />
                 <button
                   type="button"
                   onClick={() => {
                     window.history.pushState({}, '', `${import.meta.env.BASE_URL}briefing`);
                     window.dispatchEvent(new PopStateEvent('popstate'));
                   }}
-                  className="text-[8px] md:text-[10px] font-bold uppercase tracking-widest text-[#795558]/40 hover:text-[#795558] transition-colors mt-2 block ml-1"
+                  className="text-[8px] md:text-[10px] font-bold uppercase tracking-widest text-[#795558]/40 dark:text-white/30 hover:text-[#795558] dark:hover:text-white transition-colors mt-2 block ml-1"
                 >
                   Ou clique aqui para preencher um briefing completo ✨
                 </button>
               </div>
 
               <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-4">
-                <div className="flex items-center gap-2 text-[#795558]/40 text-[9px] md:text-xs font-bold uppercase tracking-widest order-2 md:order-1">
+                <div className="flex items-center gap-2 text-[#795558]/40 dark:text-white/20 text-[9px] md:text-xs font-bold uppercase tracking-widest order-2 md:order-1">
                   <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
                   Agenda 2026 Aberta
                 </div>
@@ -189,12 +189,12 @@ export function Contact() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   disabled={submitted}
-                  className="w-full md:w-auto bg-[#795558] text-white pl-8 pr-2 py-2 rounded-full flex items-center justify-center md:justify-start gap-4 hover:bg-[#5A3D3F] transition-all shadow-lg hover:shadow-xl hover:shadow-[#795558]/20 group order-1 md:order-2"
+                  className="w-full md:w-auto bg-[#795558] dark:bg-[#FCF6EF] text-white dark:text-[#795558] pl-8 pr-2 py-2 rounded-full flex items-center justify-center md:justify-start gap-4 hover:bg-[#5A3D3F] dark:hover:bg-white transition-all shadow-lg hover:shadow-xl hover:shadow-[#795558]/20 group order-1 md:order-2"
                 >
                   <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest">
                     {submitted ? 'Enviado!' : 'Conversar via WhatsApp'}
                   </span>
-                  <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-white text-[#795558] flex items-center justify-center group-hover:rotate-45 transition-transform flex-shrink-0">
+                  <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-white dark:bg-[#795558] text-[#795558] dark:text-[#FCF6EF] flex items-center justify-center group-hover:rotate-45 transition-transform flex-shrink-0">
                     {submitted ? <CheckCircle className="w-4 h-4 md:w-5 md:h-5" /> : <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />}
                   </div>
                 </motion.button>

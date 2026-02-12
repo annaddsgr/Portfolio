@@ -61,7 +61,7 @@ function ProjectCardDesktop({ project, index, onSelect }: { project: Project, in
               ([sx, sy]) => `${sx}px ${sy}px 60px rgba(121, 85, 88, 0.15)`
             )
           }}
-          className="relative aspect-[16/9] rounded-[3.5rem] overflow-hidden bg-white border-[16px] border-white cursor-pointer"
+          className="relative aspect-[16/9] rounded-[3.5rem] overflow-hidden bg-white dark:bg-[#251e1e] border-[16px] border-white dark:border-[#251e1e] cursor-pointer"
         >
           <motion.div
             className="absolute inset-0 scale-110"
@@ -88,14 +88,14 @@ function ProjectCardDesktop({ project, index, onSelect }: { project: Project, in
               rotate: 15,
               z: "80px"
             }}
-            className="absolute top-1/2 left-12 -translate-y-1/2 flex w-24 h-24 bg-[#FFDAF0] rounded-full items-center justify-center text-[#795558] text-[9px] font-black uppercase tracking-widest text-center px-4 leading-tight shadow-2xl border-4 border-white pointer-events-none"
+            className="absolute top-1/2 left-12 -translate-y-1/2 flex w-24 h-24 bg-[#FFDAF0] dark:bg-[#795558] rounded-full items-center justify-center text-[#795558] dark:text-[#FCF6EF] text-[9px] font-black uppercase tracking-widest text-center px-4 leading-tight shadow-2xl border-4 border-white dark:border-[#1a1515] pointer-events-none"
           >
             Alto Impacto Estratégico
           </motion.div>
         </motion.div>
 
         {/* Outer Background Typography */}
-        <div className={`absolute -top-20 ${isEven ? '-left-12' : '-right-12'} text-[20rem] font-serif text-[#795558]/5 leading-none select-none pointer-events-none italic z-[-1]`}>
+        <div className={`absolute -top-20 ${isEven ? '-left-12' : '-right-12'} text-[20rem] font-serif text-[#795558]/5 dark:text-white/5 leading-none select-none pointer-events-none italic z-[-1]`}>
           0{index + 1}
         </div>
       </div>
@@ -106,23 +106,23 @@ function ProjectCardDesktop({ project, index, onSelect }: { project: Project, in
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            className={`text-xs font-black uppercase tracking-[0.5em] text-[#795558]/40 flex items-center gap-4 ${!isEven && 'justify-end'}`}
+            className={`text-xs font-black uppercase tracking-[0.5em] text-[#795558]/40 dark:text-[#FCF6EF]/40 flex items-center gap-4 ${!isEven && 'justify-end'}`}
           >
-            {isEven ? null : <div className="h-[1px] w-12 bg-[#795558]/20" />}
+            {isEven ? null : <div className="h-[1px] w-12 bg-[#795558]/20 dark:bg-white/20" />}
             {project.category}
-            {isEven ? <div className="h-[1px] w-12 bg-[#795558]/20" /> : null}
+            {isEven ? <div className="h-[1px] w-12 bg-[#795558]/20 dark:bg-white/20" /> : null}
           </motion.p>
-          <h3 className="text-7xl font-serif text-[#795558] leading-tight transition-all duration-700 group-hover:italic">
+          <h3 className="text-7xl font-serif text-[#795558] dark:text-[#FCF6EF] leading-tight transition-all duration-700 group-hover:italic">
             {project.title}
           </h3>
-          <p className="text-lg text-[#795558]/70 font-light leading-relaxed max-w-md italic">
+          <p className="text-lg text-[#795558]/70 dark:text-[#FCF6EF]/70 font-light leading-relaxed max-w-md italic">
             "{project.description.slice(0, 120)}..."
           </p>
         </div>
 
         <div className={`flex flex-wrap gap-3 ${!isEven && 'justify-end'}`}>
           {project.typography.slice(0, 2).map((font, i) => (
-            <span key={i} className="px-4 py-2 rounded-full border border-[#795558]/10 text-[9px] font-bold uppercase tracking-widest text-[#795558]/50">
+            <span key={i} className="px-4 py-2 rounded-full border border-[#795558]/10 dark:border-white/10 text-[9px] font-bold uppercase tracking-widest text-[#795558]/50 dark:text-[#FCF6EF]/50">
               {font}
             </span>
           ))}
@@ -131,12 +131,12 @@ function ProjectCardDesktop({ project, index, onSelect }: { project: Project, in
         <motion.button
           onClick={() => onSelect(project)}
           whileHover={{ x: isEven ? 10 : -10 }}
-          className="group flex items-center gap-4 text-[#795558] text-[10px] font-black uppercase tracking-[0.4em] pt-4"
+          className="group flex items-center gap-4 text-[#795558] dark:text-[#FCF6EF] text-[10px] font-black uppercase tracking-[0.4em] pt-4"
         >
           {isEven ? (
-            <>Explorar Estudo <div className="w-12 h-[1px] bg-[#795558] group-hover:w-20 transition-all" /></>
+            <>Explorar Estudo <div className="w-12 h-[1px] bg-[#795558] dark:bg-[#FCF6EF] group-hover:w-20 transition-all" /></>
           ) : (
-            <><div className="w-12 h-[1px] bg-[#795558] group-hover:w-20 transition-all" /> Explorar Estudo</>
+            <><div className="w-12 h-[1px] bg-[#795558] dark:bg-[#FCF6EF] group-hover:w-20 transition-all" /> Explorar Estudo</>
           )}
         </motion.button>
       </div>
@@ -150,11 +150,11 @@ export function ProjectsDesktop() {
   const [isFeedOpen, setIsFeedOpen] = useState(false);
 
   return (
-    <section id="projetos" className="py-16 bg-[#FCF6EF]/50 relative overflow-hidden">
+    <section id="projetos" className="py-16 bg-[#FCF6EF]/50 dark:bg-[#1a1515] transition-colors duration-500 relative overflow-hidden">
       {/* Background Ornaments */}
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-[0.02]">
-        <div className="absolute top-0 left-1/2 w-[1px] h-full bg-[#795558] translate-x-1/2" />
-        <div className="absolute top-1/2 left-0 w-full h-[1px] bg-[#795558] -translate-y-1/2" />
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-[0.02] dark:opacity-[0.05]">
+        <div className="absolute top-0 left-1/2 w-[1px] h-full bg-[#795558] dark:bg-white translate-x-1/2" />
+        <div className="absolute top-1/2 left-0 w-full h-[1px] bg-[#795558] dark:bg-white -translate-y-1/2" />
       </div>
 
       <div className="max-w-7xl mx-auto px-12 relative z-10">
@@ -164,16 +164,16 @@ export function ProjectsDesktop() {
           viewport={{ once: true }}
           className="mb-32 flex flex-col items-center text-center"
         >
-          <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white shadow-sm border border-[#795558]/5 mb-10">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#795558] animate-pulse" />
-            <span className="text-[10px] uppercase tracking-[0.4em] text-[#795558] font-black">Portfólio Curado</span>
+          <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white dark:bg-white/5 shadow-sm border border-[#795558]/5 dark:border-white/10 mb-10">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#795558] dark:bg-[#FCF6EF] animate-pulse" />
+            <span className="text-[10px] uppercase tracking-[0.4em] text-[#795558] dark:text-[#FCF6EF] font-black">Portfólio Curado</span>
           </div>
 
-          <h2 className="text-[9rem] font-serif text-[#795558] leading-[0.9] mb-12">
-            Projetos <br /> <span className="italic font-light opacity-60">Selecionados</span>
+          <h2 className="text-[9rem] font-serif text-[#795558] dark:text-[#FCF6EF] leading-[0.9] mb-12">
+            Projetos <br /> <span className="italic font-light opacity-60 dark:opacity-40">Selecionados</span>
           </h2>
 
-          <div className="w-20 h-[1.5px] bg-[#795558]/20" />
+          <div className="w-20 h-[1.5px] bg-[#795558]/20 dark:bg-white/20" />
         </motion.div>
 
         {/* Cinematic List */}
@@ -191,13 +191,13 @@ export function ProjectsDesktop() {
           className="mt-40 flex flex-col items-center gap-10"
         >
           <div className="relative group cursor-pointer" onClick={() => setIsFeedOpen(true)}>
-            <div className="absolute inset-0 bg-[#795558] rounded-full blur-3xl opacity-0 group-hover:opacity-10 transition-opacity" />
-            <button className="relative px-12 py-6 rounded-full border border-[#795558]/20 text-[#795558] text-xs font-black uppercase tracking-[0.5em] hover:bg-[#795558] hover:text-white transition-all duration-700 shadow-2xl hover:shadow-[#795558]/30">
+            <div className="absolute inset-0 bg-[#795558] dark:bg-[#FCF6EF] rounded-full blur-3xl opacity-0 group-hover:opacity-10 dark:group-hover:opacity-5 transition-opacity" />
+            <button className="relative px-12 py-6 rounded-full border border-[#795558]/20 dark:border-white/20 text-[#795558] dark:text-[#FCF6EF] text-xs font-black uppercase tracking-[0.5em] hover:bg-[#795558] hover:text-white dark:hover:bg-[#FCF6EF] dark:hover:text-[#1a1515] transition-all duration-700 shadow-2xl hover:shadow-[#795558]/30 dark:hover:shadow-none">
               Ver Todo o Acervo
             </button>
           </div>
 
-          <p className="text-[10px] font-bold text-[#795558]/30 uppercase tracking-[0.3em]">
+          <p className="text-[10px] font-bold text-[#795558]/30 dark:text-white/20 uppercase tracking-[0.3em]">
             Design com Alma & Estratégia &bull; Explorar Galeria
           </p>
         </motion.div>

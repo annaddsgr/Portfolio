@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode } from 'react';
 
 type Language = 'pt' | 'en';
 
@@ -19,7 +19,17 @@ const translations = {
     'cta.budget': 'Solicitar Orçamento',
     'projects.title': 'Histórias que ajudei a criar',
     'projects.subtitle': 'Cada projeto é uma jornada única.',
-    // Adicionar mais chaves conforme necessário
+    'hero.alma': 'com alma',
+    'hero.manifesto': '"Transformo essências invisíveis em realidades visuais potentes e intencionais."',
+    'hero.cta': 'Ver Portfólio',
+    'hero.tailored': 'Criação sob Medida',
+    'hero.curatorship': 'Curadoria Visual',
+    'hero.strategy': '& Estratégia',
+    'about.pleasure': 'prazer',
+    'about.intro': 'Sou uma designer gráfica apaixonada por criar conexões visuais significativas. Trabalho além da estética — busco a alma de cada projeto.',
+    'about.mission': 'Transformar essências em identidades potentes, unindo criatividade e estratégia.',
+    'about.vision': 'Ser a referência em design que conecta marcas a corações de forma autêntica.',
+    'contact.cta': 'Vamos criar algo único?',
   },
   en: {
     'nav.projects': 'Projects',
@@ -31,6 +41,17 @@ const translations = {
     'cta.budget': 'Request a Quote',
     'projects.title': 'Stories I helped create',
     'projects.subtitle': 'Every project is a unique journey.',
+    'hero.alma': 'with soul',
+    'hero.manifesto': '"I transform invisible essences into powerful and intentional visual realities."',
+    'hero.cta': 'View Portfolio',
+    'hero.tailored': 'Tailored Creation',
+    'hero.curatorship': 'Visual Curatorship',
+    'hero.strategy': '& Strategy',
+    'about.pleasure': 'pleasure',
+    'about.intro': 'I am a graphic designer passionate about creating meaningful visual connections. I work beyond aesthetics — I seek the soul of every project.',
+    'about.mission': 'To transform essences into powerful identities, combining creativity and strategy.',
+    'about.vision': 'To be the benchmark in design that connects brands to hearts authentically.',
+    'contact.cta': 'Shall we create something unique?',
   }
 };
 

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Sparkles, ArrowUpRight } from 'lucide-react';
 import { Project } from '@/app/data/projects';
@@ -12,6 +13,17 @@ interface ProjectFeedProps {
 }
 
 export function ProjectFeed({ isOpen, onClose, projects, onSelectProject }: ProjectFeedProps) {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -20,7 +32,8 @@ export function ProjectFeed({ isOpen, onClose, projects, onSelectProject }: Proj
           animate={{ opacity: 1, clipPath: 'circle(150% at 50% 50%)' }}
           exit={{ opacity: 0, clipPath: 'circle(0% at 50% 50%)' }}
           transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
-          className="fixed inset-0 bg-[#FCF6EF] z-[10000] overflow-y-auto custom-scrollbar"
+          data-lenis-prevent
+          className="fixed inset-0 bg-[#FCF6EF] dark:bg-[#1a1515] transition-colors duration-500 z-[10000] overflow-y-auto custom-scrollbar"
         >
           {/* Close Button - Abstract Floating */}
           <motion.div
@@ -30,14 +43,14 @@ export function ProjectFeed({ isOpen, onClose, projects, onSelectProject }: Proj
             className="fixed top-6 right-6 z-[10001] flex items-center gap-3"
             onClick={onClose}
           >
-             <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#795558] bg-white/80 backdrop-blur px-3 py-1.5 rounded-full shadow-sm hidden md:block">
+             <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#795558] dark:text-[#FCF6EF] bg-white/80 dark:bg-white/5 backdrop-blur px-3 py-1.5 rounded-full shadow-sm hidden md:block">
                 Fechar Galeria
              </span>
-             <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#795558] bg-white/80 backdrop-blur px-3 py-1.5 rounded-full shadow-sm md:hidden">
+             <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#795558] dark:text-[#FCF6EF] bg-white/80 dark:bg-white/5 backdrop-blur px-3 py-1.5 rounded-full shadow-sm md:hidden">
                 Voltar
              </span>
             <button
-                className="w-12 h-12 md:w-14 md:h-14 bg-[#795558] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all group"
+                className="w-12 h-12 md:w-14 md:h-14 bg-[#795558] dark:bg-[#FCF6EF] text-white dark:text-[#795558] rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all group"
             >
                 <X className="w-5 h-5 group-hover:rotate-90 transition-transform duration-500" />
             </button>
@@ -51,7 +64,7 @@ export function ProjectFeed({ isOpen, onClose, projects, onSelectProject }: Proj
                 rotate: [2, 3, 2]
               }}
               transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-              className="absolute top-1/4 -left-20 text-[60rem] font-serif italic text-[#795558] leading-none"
+              className="absolute top-1/4 -left-20 text-[60rem] font-serif italic text-[#795558] dark:text-white/5 leading-none"
             >
               Anna
             </motion.div>
@@ -67,11 +80,11 @@ export function ProjectFeed({ isOpen, onClose, projects, onSelectProject }: Proj
                 className="max-w-2xl space-y-8"
               >
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-[1px] bg-[#795558]/20" />
-                  <span className="text-[10px] font-black uppercase tracking-[0.5em] text-[#795558]/40 italic">Exposição Digital 2026</span>
+                  <div className="w-12 h-[1px] bg-[#795558]/20 dark:bg-white/20" />
+                  <span className="text-[10px] font-black uppercase tracking-[0.5em] text-[#795558]/40 dark:text-[#FCF6EF]/40 italic">Exposição Digital 2026</span>
                 </div>
-                <h2 className="text-7xl md:text-9xl lg:text-[11rem] font-serif text-[#795558] leading-[0.8] tracking-tight">
-                  Legado <br /> <span className="italic font-light opacity-60">Criativo</span>
+                <h2 className="text-7xl md:text-9xl lg:text-[11rem] font-serif text-[#795558] dark:text-[#FCF6EF] leading-[0.8] tracking-tight">
+                  Legado <br /> <span className="italic font-light opacity-60 dark:opacity-40">Criativo</span>
                 </h2>
               </motion.div>
 
@@ -81,12 +94,12 @@ export function ProjectFeed({ isOpen, onClose, projects, onSelectProject }: Proj
                 transition={{ delay: 0.6, duration: 1 }}
                 className="md:w-1/3 space-y-6"
               >
-                <p className="text-lg md:text-xl text-[#795558]/70 font-light leading-relaxed font-serif italic text-balance">
+                <p className="text-lg md:text-xl text-[#795558]/70 dark:text-[#FCF6EF]/70 font-light leading-relaxed font-serif italic text-balance">
                   "Um mergulho profundo no acervo, onde cada projeto é uma peça única de estratégia visual."
                 </p>
                 <div className="flex gap-4">
-                  <Sparkles className="w-5 h-5 text-[#795558]/20" />
-                  <div className="h-[1px] flex-1 bg-[#795558]/10 mt-2.5" />
+                  <Sparkles className="w-5 h-5 text-[#795558]/20 dark:text-white/20" />
+                  <div className="h-[1px] flex-1 bg-[#795558]/10 dark:bg-white/10 mt-2.5" />
                 </div>
               </motion.div>
             </header>
@@ -105,15 +118,15 @@ export function ProjectFeed({ isOpen, onClose, projects, onSelectProject }: Proj
                   {/* Metadata Header */}
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-6">
-                      <span className="text-[11px] font-serif italic text-[#795558]/40">#{index + 1}</span>
-                      <div className="w-8 h-[1px] bg-[#795558]/10" />
-                      <span className="text-[9px] font-black uppercase tracking-[0.3em] text-[#795558]/30">{project.category}</span>
+                      <span className="text-[11px] font-serif italic text-[#795558]/40 dark:text-white/40">#{index + 1}</span>
+                      <div className="w-8 h-[1px] bg-[#795558]/10 dark:bg-white/10" />
+                      <span className="text-[9px] font-black uppercase tracking-[0.3em] text-[#795558]/30 dark:text-[#FCF6EF]/40">{project.category}</span>
                     </div>
-                    <span className="text-[9px] font-bold text-[#795558]/20 uppercase tracking-widest">{project.year}</span>
+                    <span className="text-[9px] font-bold text-[#795558]/20 dark:text-white/20 uppercase tracking-widest">{project.year}</span>
                   </div>
 
                   {/* High-End Framing */}
-                  <div className="relative aspect-[16/10] sm:aspect-video rounded-[3rem] overflow-hidden bg-white p-4 md:p-6 shadow-[0_40px_80px_-20px_rgba(121,85,88,0.1)] group-hover:shadow-2xl group-hover:shadow-[#795558]/10 transition-all duration-1000">
+                  <div className="relative aspect-[16/10] sm:aspect-video rounded-[3rem] overflow-hidden bg-white dark:bg-[#251e1e] p-4 md:p-6 shadow-[0_40px_80px_-20px_rgba(121,85,88,0.1)] group-hover:shadow-2xl group-hover:shadow-[#795558]/10 transition-all duration-1000">
                     <div className="relative h-full w-full rounded-[2rem] overflow-hidden">
                       <ImageWithFallback
                         src={getImagePath(project.image)}
@@ -124,19 +137,19 @@ export function ProjectFeed({ isOpen, onClose, projects, onSelectProject }: Proj
                       {/* Immersive Hover Fragment */}
                       <div className="absolute inset-0 bg-[#795558]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 backdrop-blur-[2px]" />
 
-                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-white rounded-full flex items-center justify-center scale-0 group-hover:scale-100 transition-all duration-500 shadow-2xl">
-                        <ArrowUpRight className="w-6 h-6 text-[#795558]" />
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-white dark:bg-[#1a1515] rounded-full flex items-center justify-center scale-0 group-hover:scale-100 transition-all duration-500 shadow-2xl">
+                        <ArrowUpRight className="w-6 h-6 text-[#795558] dark:text-[#FCF6EF]" />
                       </div>
                     </div>
                   </div>
 
                   {/* Title & Entry */}
                   <div className="space-y-4 max-w-lg">
-                    <h3 className="text-4xl md:text-6xl font-serif text-[#795558] leading-tight group-hover:pl-4 transition-all duration-700">
+                    <h3 className="text-4xl md:text-6xl font-serif text-[#795558] dark:text-[#FCF6EF] leading-tight group-hover:pl-4 transition-all duration-700">
                       {project.title}
                     </h3>
-                    <div className="h-[1px] w-12 bg-[#795558]/20 group-hover:w-full transition-all duration-1000" />
-                    <p className="text-sm text-[#795558]/60 font-light leading-relaxed italic">
+                    <div className="h-[1px] w-12 bg-[#795558]/20 dark:bg-white/20 group-hover:w-full transition-all duration-1000" />
+                    <p className="text-sm text-[#795558]/60 dark:text-[#FCF6EF]/60 font-light leading-relaxed italic">
                       {project.description.slice(0, 100)}...
                     </p>
                   </div>
@@ -145,7 +158,7 @@ export function ProjectFeed({ isOpen, onClose, projects, onSelectProject }: Proj
             </div>
 
             {/* Conceptual Footer */}
-            <footer className="mt-40 md:mt-80 pt-20 border-t border-[#795558]/10 flex flex-col items-center gap-12">
+            <footer className="mt-40 md:mt-80 pt-20 border-t border-[#795558]/10 dark:border-white/10 flex flex-col items-center gap-12">
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}

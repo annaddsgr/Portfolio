@@ -38,11 +38,11 @@ const steps = [
 
 export function CreativeProcess() {
   return (
-    <section id="processo" className="py-32 px-6 md:px-12 bg-[#FCF6EF]/50 relative overflow-hidden">
+    <section id="processo" className="py-32 px-6 md:px-12 bg-[#FCF6EF]/50 dark:bg-[#1a1515] transition-colors duration-500 relative overflow-hidden">
       {/* Delicate Ornaments */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-          <div className="absolute top-20 left-10 w-64 h-64 bg-[#795558]/5 rounded-full blur-[100px] animate-pulse" />
-          <div className="absolute bottom-20 right-10 w-80 h-80 bg-[#795558]/3 rounded-full blur-[120px] animate-pulse delay-1000" />
+          <div className="absolute top-20 left-10 w-64 h-64 bg-[#795558]/5 dark:bg-white/5 rounded-full blur-[100px] animate-pulse" />
+          <div className="absolute bottom-20 right-10 w-80 h-80 bg-[#795558]/3 dark:bg-white/3 rounded-full blur-[120px] animate-pulse delay-1000" />
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -51,10 +51,10 @@ export function CreativeProcess() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 shadow-sm border border-[#795558]/5 mb-8"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 dark:bg-white/5 shadow-sm border border-[#795558]/5 dark:border-white/10 mb-8"
           >
-            <Sparkles className="w-3 h-3 text-[#795558]" />
-            <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-[#795558]">Nossa Jornada</span>
+            <Sparkles className="w-3 h-3 text-[#795558] dark:text-[#FCF6EF]" />
+            <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-[#795558] dark:text-[#FCF6EF]">Nossa Jornada</span>
           </motion.div>
           
           <motion.h2
@@ -62,9 +62,9 @@ export function CreativeProcess() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
-            className="text-5xl md:text-7xl font-serif text-[#795558] mb-8 font-light"
+            className="text-4xl md:text-6xl font-serif text-[#795558] dark:text-[#FCF6EF] mb-6 font-light"
           >
-            Como construímos <span className="italic">juntos</span>
+            Como posso te <span className="italic">ajudar</span>?
           </motion.h2>
           
           <motion.p
@@ -127,17 +127,17 @@ export function CreativeProcess() {
                     <div className="w-12 h-12 bg-[#795558] rounded-2xl flex items-center justify-center shadow-lg transform group-hover:scale-110 group-hover:rotate-[-12deg] transition-all duration-500 mb-2">
                        {step.icon}
                     </div>
-                    <span className="text-[10px] font-black text-[#795558]/20 tracking-widest">{step.id}</span>
+                    <span className="text-[10px] font-black text-[#795558]/20 dark:text-white/20 tracking-widest">{step.id}</span>
                    </div>
                 </div>
 
                 {/* Content */}
                 <div className="text-center px-4">
-                  <span className="text-[9px] uppercase tracking-[0.4em] text-[#795558]/40 font-bold mb-2 block">{step.subtitle}</span>
-                  <h3 className="text-2xl font-serif text-[#795558] mb-4 group-hover:italic transition-all duration-500">
+                  <span className="text-[9px] uppercase tracking-[0.4em] text-[#795558]/40 dark:text-[#FCF6EF]/40 font-bold mb-2 block">{step.subtitle}</span>
+                  <h3 className="text-2xl font-serif text-[#795558] dark:text-[#FCF6EF] mb-4 group-hover:italic transition-all duration-500">
                     {step.title}
                   </h3>
-                  <p className="text-sm text-gray-500 font-light leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity">
+                  <p className="text-sm text-gray-500 dark:text-white/40 font-light leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity">
                     {step.description}
                   </p>
                 </div>
@@ -155,13 +155,13 @@ export function CreativeProcess() {
           className="mt-40 text-center"
         >
           <div className="max-w-3xl mx-auto p-12 relative">
-             <div className="absolute inset-0 bg-white/40 backdrop-blur-sm rounded-[3rem] border border-white transition-all hover:bg-white/60 duration-700" />
+             <div className="absolute inset-0 bg-white/40 dark:bg-white/5 backdrop-blur-sm rounded-[3rem] border border-white dark:border-white/10 transition-all hover:bg-white/60 dark:hover:bg-white/10 duration-700" />
              <div className="relative z-10 space-y-6">
-                <Heart className="w-6 h-6 text-[#795558]/20 mx-auto" />
-                <h3 className="text-3xl font-serif text-[#795558] font-light italic">
+                <Heart className="w-6 h-6 text-[#795558]/20 dark:text-white/20 mx-auto" />
+                <h3 className="text-3xl font-serif text-[#795558] dark:text-[#FCF6EF] font-light italic">
                   Um processo feito com a alma
                 </h3>
-                <p className="text-gray-500 font-light leading-relaxed">
+                <p className="text-gray-500 dark:text-white/40 font-light leading-relaxed">
                   Não acredito em fórmulas prontas. Cada marca é um jardim que precisa de um cuidado específico. 
                   Respeito o seu tempo e o das ideias, para que o resultado final floresça com verdade e autenticidade.
                 </p>

@@ -46,7 +46,7 @@ export function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-[5000] transition-all duration-700 ease-in-out flex items-center ${isScrolled ? 'bg-[#FCF6EF]/85 backdrop-blur-xl shadow-[0_4px_30px_rgba(121,85,88,0.05)] h-16 md:h-18 border-b border-[#795558]/5' : 'bg-[#FCF6EF]/95 backdrop-blur-md md:bg-transparent md:backdrop-blur-none shadow-sm md:shadow-none h-20 md:h-24'
+        className={`fixed top-0 left-0 right-0 z-[5000] transition-all duration-700 ease-in-out flex items-center ${isScrolled ? 'bg-[#FCF6EF]/85 dark:bg-[#1a1515]/85 backdrop-blur-xl shadow-[0_4px_30px_rgba(121,85,88,0.05)] h-16 md:h-18 border-b border-[#795558]/5 dark:border-white/5' : 'bg-[#FCF6EF]/95 dark:bg-[#1a1515]/95 backdrop-blur-md md:bg-transparent md:backdrop-blur-none shadow-sm md:shadow-none h-20 md:h-24'
           }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 w-full flex justify-between items-center">
@@ -61,7 +61,7 @@ export function Header() {
               <img
                 src={getImagePath('assets/logo.png')}
                 alt="Anna Designer Gráfico"
-                className={`transition-all duration-700 object-contain ${isScrolled ? 'h-8 md:h-12' : 'h-12 md:h-20'
+                className={`transition-all duration-700 object-contain dark:brightness-200 dark:grayscale dark:contrast-200 ${isScrolled ? 'h-8 md:h-12' : 'h-12 md:h-20'
                   }`}
               />
             </motion.div>
@@ -74,22 +74,22 @@ export function Header() {
                 <Magnetic key={item.id}>
                   <button
                     onClick={() => scrollToSection(item.id)}
-                    className="text-[9px] lg:text-[10px] font-bold uppercase tracking-[0.25em] text-[#795558]/50 hover:text-[#795558] transition-all relative group py-3 px-1 lg:px-2"
+                    className="text-[9px] lg:text-[10px] font-bold uppercase tracking-[0.25em] text-[#795558]/50 dark:text-[#FCF6EF]/50 hover:text-[#795558] dark:hover:text-[#FCF6EF] transition-all relative group py-3 px-1 lg:px-2"
                   >
                     {item.label}
-                    <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-[#795558] transition-all duration-500 group-hover:w-full opacity-0 group-hover:opacity-30" />
+                    <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-[#795558] dark:bg-[#FCF6EF] transition-all duration-500 group-hover:w-full opacity-0 group-hover:opacity-30" />
                   </button>
                 </Magnetic>
               ))}
             </div>
 
-            <div className="h-4 w-[1px] bg-[#795558]/10" />
+            <div className="h-4 w-[1px] bg-[#795558]/10 dark:bg-white/10" />
 
             <div className="flex items-center gap-4 lg:gap-6">
               <Magnetic>
                 <button
                   onClick={goBriefing}
-                  className="px-6 lg:px-8 py-2.5 rounded-full bg-[#795558] text-[#FCF6EF] text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#5A3D3F] transition-all shadow-[0_10px_20px_-5px_rgba(121,85,88,0.3)]"
+                  className="px-6 lg:px-8 py-2.5 rounded-full bg-[#795558] dark:bg-[#FCF6EF] text-[#FCF6EF] dark:text-[#1a1515] text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#5A3D3F] dark:hover:bg-white transition-all shadow-[0_10px_20px_-5px_rgba(121,85,88,0.3)]"
                 >
                   Iniciar Projeto
                 </button>
@@ -98,10 +98,10 @@ export function Header() {
               <Magnetic>
                 <button
                   onClick={() => setLanguage(language === 'pt' ? 'en' : 'pt')}
-                  className="w-8 h-8 lg:w-10 lg:h-10 flex items-center justify-center rounded-full border border-[#795558]/10 hover:border-[#795558]/30 transition-all text-[#795558] group relative overflow-hidden"
+                  className="w-8 h-8 lg:w-10 lg:h-10 flex items-center justify-center rounded-full border border-[#795558]/10 dark:border-white/10 hover:border-[#795558]/30 dark:hover:border-white/30 transition-all text-[#795558] dark:text-[#FCF6EF] group relative overflow-hidden"
                 >
                   <div className="relative z-10 text-[8px] lg:text-[9px] font-black">{language.toUpperCase()}</div>
-                  <div className="absolute inset-0 bg-[#795558]/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-[#795558]/5 dark:bg-white/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                 </button>
               </Magnetic>
             </div>
@@ -112,14 +112,14 @@ export function Header() {
             {/* Language Toggle Mobile */}
             <button
               onClick={() => setLanguage(language === 'pt' ? 'en' : 'pt')}
-              className="w-8 h-8 flex items-center justify-center rounded-full border border-[#795558]/10 text-[#795558] text-[9px] font-black bg-white/50 backdrop-blur-sm shadow-sm"
+              className="w-8 h-8 flex items-center justify-center rounded-full border border-[#795558]/10 dark:border-white/10 text-[#795558] dark:text-[#FCF6EF] text-[9px] font-black bg-white/50 dark:bg-white/10 backdrop-blur-sm shadow-sm"
             >
               {language.toUpperCase()}
             </button>
 
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="relative z-[6000] p-2.5 text-[#795558] bg-white/50 backdrop-blur-sm rounded-full border border-[#795558]/10 shadow-sm transition-transform active:scale-95"
+              className="relative z-[6000] p-2.5 text-[#795558] dark:text-[#FCF6EF] bg-white/50 dark:bg-white/10 backdrop-blur-sm rounded-full border border-[#795558]/10 dark:border-white/10 shadow-sm transition-transform active:scale-95"
               aria-label={isMenuOpen ? "Fechar Menu" : "Abrir Menu"}
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -135,7 +135,7 @@ export function Header() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-[#FCF6EF] z-[5500] md:hidden"
+            className="fixed inset-0 bg-[#FCF6EF] dark:bg-[#1a1515] transition-colors duration-500 z-[5500] md:hidden"
           >
             {/* Botão de Fechar */}
             <motion.button
@@ -144,16 +144,16 @@ export function Header() {
               animate={{ opacity: 1, scale: 1 }}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className="absolute top-8 right-8 w-12 h-12 flex items-center justify-center rounded-full bg-[#795558]/5 text-[#795558] active:bg-[#795558]/10 transition-colors z-[5600]"
+              className="absolute top-8 right-8 w-12 h-12 flex items-center justify-center rounded-full bg-[#795558]/5 dark:bg-white/5 text-[#795558] dark:text-[#FCF6EF] active:bg-[#795558]/10 dark:active:bg-white/10 transition-colors z-[5600]"
               aria-label="Fechar Menu"
             >
               <X size={28} />
             </motion.button>
 
             {/* Artistic Background Elements */}
-            <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
-              <div className="absolute top-20 left-[-10%] text-[40rem] font-serif italic text-[#795558] leading-none">A</div>
-              <div className="absolute bottom-[-10%] right-[-10%] text-[40rem] font-serif italic text-[#795558] leading-none rotate-12">N</div>
+            <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none">
+              <div className="absolute top-20 left-[-10%] text-[40rem] font-serif italic text-[#795558] dark:text-white leading-none">A</div>
+              <div className="absolute bottom-[-10%] right-[-10%] text-[40rem] font-serif italic text-[#795558] dark:text-white leading-none rotate-12">N</div>
             </div>
 
             <div className="relative h-full flex flex-col items-center justify-center px-12">
@@ -165,11 +165,11 @@ export function Header() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 + i * 0.1, duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-                    className="text-4xl sm:text-5xl font-serif text-[#795558] hover:italic transition-all group"
+                    className="text-4xl sm:text-5xl font-serif text-[#795558] dark:text-[#FCF6EF] hover:italic transition-all group"
                   >
                     <span className="relative">
                       {item.label}
-                      <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-[#795558]/20 transition-all group-hover:w-full" />
+                      <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-[#795558]/20 dark:bg-[#FCF6EF]/20 transition-all group-hover:w-full" />
                     </span>
                   </motion.button>
                 ))}
@@ -180,7 +180,7 @@ export function Header() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1, duration: 0.8 }}
-                className="mt-20 px-12 py-5 rounded-full bg-[#795558] text-[#FCF6EF] text-xs font-black uppercase tracking-[0.3em] shadow-2xl"
+                className="mt-20 px-12 py-5 rounded-full bg-[#795558] dark:bg-[#FCF6EF] text-[#FCF6EF] dark:text-[#1a1515] text-xs font-black uppercase tracking-[0.3em] shadow-2xl"
               >
                 Iniciar Projeto
               </motion.button>
@@ -191,13 +191,13 @@ export function Header() {
                 transition={{ delay: 1.2 }}
                 className="absolute bottom-12 flex gap-8"
               >
-                <a href="https://instagram.com/annadsgr" target="_blank" rel="noreferrer" className="text-[10px] font-black uppercase tracking-widest text-[#795558]/40">Instagram</a>
-                <div className="w-[1px] h-3 bg-[#795558]/10" />
-                <a href="mailto:contato@anna.com" className="text-[10px] font-black uppercase tracking-widest text-[#795558]/40">Email</a>
-                <div className="w-[1px] h-3 bg-[#795558]/10" />
+                <a href="https://instagram.com/annadsgr" target="_blank" rel="noreferrer" className="text-[10px] font-black uppercase tracking-widest text-[#795558]/40 dark:text-[#FCF6EF]/40">Instagram</a>
+                <div className="w-[1px] h-3 bg-[#795558]/10 dark:bg-white/10" />
+                <a href="mailto:contato@anna.com" className="text-[10px] font-black uppercase tracking-widest text-[#795558]/40 dark:text-[#FCF6EF]/40">Email</a>
+                <div className="w-[1px] h-3 bg-[#795558]/10 dark:bg-white/10" />
                 <button
                   onClick={() => setLanguage(language === 'pt' ? 'en' : 'pt')}
-                  className="text-[10px] font-black uppercase tracking-widest text-[#795558]/40 hover:text-[#795558]"
+                  className="text-[10px] font-black uppercase tracking-widest text-[#795558]/40 dark:text-[#FCF6EF]/40 hover:text-[#795558] dark:hover:text-white"
                 >
                   {language.toUpperCase()}
                 </button>

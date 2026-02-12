@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { PenTool, Instagram, Monitor, Printer, Sparkles, Heart } from 'lucide-react';
+import { PenTool, Instagram, Monitor, Printer, Sparkles } from 'lucide-react';
 
 const services = [
   {
@@ -30,10 +30,12 @@ const services = [
 
 export function ServicesList() {
   return (
-    <section id="servicos" className="py-16 md:py-24 px-6 md:px-12 bg-white relative overflow-hidden">
+    <section id="servicos" className="py-16 md:py-24 px-6 md:px-12 bg-white dark:bg-[#1a1515] transition-colors duration-500 relative overflow-hidden">
       {/* Background Ornaments */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-[#FCF6EF] rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#795558]/3 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+        <div className="absolute top-20 left-10 w-64 h-64 bg-[#795558]/5 dark:bg-white/5 rounded-full blur-[100px] animate-pulse" />
+        <div className="absolute bottom-20 right-10 w-80 h-80 bg-[#795558]/3 dark:bg-white/3 rounded-full blur-[120px] animate-pulse delay-1000" />
+      </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-24">
@@ -43,8 +45,8 @@ export function ServicesList() {
             viewport={{ once: true }}
             className="inline-flex items-center gap-2 mb-6"
           >
-            <Heart className="w-3 h-3 text-[#795558]/40" />
-            <span className="text-[10px] uppercase tracking-[0.4em] text-[#795558]/60 font-bold">Especialidades</span>
+            <Sparkles className="w-3 h-3 text-[#795558]/40 dark:text-[#FCF6EF]/40" />
+            <span className="text-[10px] uppercase tracking-[0.4em] text-[#795558]/60 dark:text-[#FCF6EF]/60 font-black">Especialidades</span>
           </motion.div>
 
           <motion.h2
@@ -52,7 +54,7 @@ export function ServicesList() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
-            className="text-4xl md:text-6xl font-serif text-[#795558] mb-6 font-light"
+            className="text-4xl md:text-6xl font-serif text-[#795558] dark:text-[#FCF6EF] mb-6 font-light"
           >
             Como posso te <span className="italic">ajudar</span>?
           </motion.h2>
@@ -78,12 +80,13 @@ export function ServicesList() {
                 <div className="absolute inset-0 bg-[#795558]/5 rounded-2xl translate-x-2 translate-y-2 -z-0 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500" />
               </div>
 
+              {/* Content */}
               <div>
-                <span className="text-[9px] uppercase tracking-[0.3em] text-[#795558]/40 font-bold block mb-2">{service.subtitle}</span>
-                <h3 className="text-2xl font-serif text-[#795558] mb-4 group-hover:text-[#5A3D3F] transition-colors leading-none">
+                <span className="text-[9px] uppercase tracking-[0.3em] text-[#795558]/40 dark:text-[#FCF6EF]/40 font-bold block mb-2">{service.subtitle}</span>
+                <h3 className="text-2xl font-serif text-[#795558] dark:text-[#FCF6EF] mb-4 group-hover:text-[#5A3D3F] dark:group-hover:text-white transition-colors leading-none">
                   {service.title}
                 </h3>
-                <p className="text-gray-500 font-light leading-relaxed text-sm max-w-sm">
+                <p className="text-gray-500 dark:text-white/40 font-light leading-relaxed text-sm max-w-sm">
                   {service.description}
                 </p>
 

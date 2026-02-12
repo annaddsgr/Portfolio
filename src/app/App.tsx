@@ -18,7 +18,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/briefing" element={
-          <div className="min-h-screen bg-[#FCF6EF] antialiased md:cursor-none selection:bg-[#795558] selection:text-[#FCF6EF]">
+          <div className="min-h-screen bg-[#FCF6EF] dark:bg-[#1a1515] transition-colors duration-500 antialiased md:cursor-none selection:bg-[#795558] selection:text-[#FCF6EF] dark:selection:bg-[#FCF6EF] dark:selection:text-[#1a1515]">
             <CustomCursor />
             <Toaster position="top-center" />
             <Suspense fallback={<PageLoader />}>
@@ -27,7 +27,7 @@ export default function App() {
           </div>
         } />
         <Route path="*" element={
-          <div className="min-h-screen bg-white antialiased cursor-none">
+          <div className="min-h-screen bg-white dark:bg-[#1a1515] antialiased cursor-none">
             <CustomCursor />
             <NotFound />
           </div>

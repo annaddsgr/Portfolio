@@ -1,19 +1,21 @@
 import { motion } from "motion/react";
 import { Sparkles, ArrowRight, PenTool } from "lucide-react";
 import { Magnetic } from '@/app/components/layout/Magnetic';
+import { useLanguage } from '../../../context/LanguageContext';
 
 export function HeroMobile() {
+  const { t } = useLanguage();
   const scrollToContent = () => {
     document.getElementById("projetos")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section className="relative min-h-[90vh] flex flex-col items-center justify-center overflow-hidden bg-[#FCF6EF] py-12 px-6">
+    <section className="relative min-h-[90vh] flex flex-col items-center justify-center overflow-hidden bg-[#FCF6EF] dark:bg-[#1a1515] py-12 px-6 transition-colors duration-500">
       {/* Reduced Background Atmosphere for Mobile Performance - Optimized */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {/* Using CSS Radial Gradients instead of large blurs for better mobile performance */}
-        <div className="absolute -top-[10%] -right-[10%] w-[70%] h-[40%] rounded-full bg-[#795558]/5 blur-3xl opacity-60 mix-blend-multiply" />
-        <div className="absolute bottom-[-10%] left-[-10%] w-[60%] h-[30%] rounded-full bg-[#FFDAF0]/20 blur-2xl opacity-50" />
+        <div className="absolute -top-[10%] -right-[10%] w-[70%] h-[40%] rounded-full bg-[#795558]/5 dark:bg-white/5 blur-3xl opacity-60 mix-blend-multiply dark:mix-blend-overlay" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[60%] h-[30%] rounded-full bg-[#FFDAF0]/20 dark:bg-white/5 blur-2xl opacity-50" />
       </div>
 
       <div className="w-full max-w-md mx-auto relative z-10 text-center">
@@ -23,16 +25,16 @@ export function HeroMobile() {
           transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
         >
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#795558]/10 bg-white shadow-sm mb-8 mx-auto">
-            <Sparkles className="w-3 h-3 text-[#795558] animate-pulse" />
-            <span className="text-[8px] font-black uppercase tracking-[0.3em] text-[#795558]">Visual Strategist</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#795558]/10 dark:border-white/10 bg-white dark:bg-white/5 shadow-sm mb-8 mx-auto">
+            <Sparkles className="w-3 h-3 text-[#795558] dark:text-[#FCF6EF] animate-pulse" />
+            <span className="text-[8px] font-black uppercase tracking-[0.3em] text-[#795558] dark:text-[#FCF6EF]">Visual Strategist</span>
           </div>
 
           {/* Main Title - Vertical Layout */}
-          <h1 className="font-serif text-[#795558] mb-8 relative">
-            <span className="block text-5xl italic opacity-40 mb-[-10px]">Design</span>
+          <h1 className="font-serif text-[#795558] dark:text-[#FCF6EF] mb-8 relative transition-colors">
+            <span className="block text-5xl italic opacity-40 dark:opacity-20 mb-[-10px]">Design</span>
             <span className="block text-6xl relative z-10 leading-tight">
-              com alma
+              {t('hero.alma')}
               <motion.div
                 animate={{ rotate: [10, 15, 10], y: [0, -5, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
@@ -44,8 +46,8 @@ export function HeroMobile() {
           </h1>
 
           {/* Value Proposition */}
-          <p className="text-lg text-[#795558]/60 font-serif italic leading-snug text-balance mb-10 px-4">
-            "Transformo essências invisíveis em realidades visuais potentes."
+          <p className="text-lg text-[#795558]/60 dark:text-[#FCF6EF]/60 font-serif italic leading-snug text-balance mb-10 px-4 transition-colors">
+            {t('hero.manifesto')}
           </p>
 
           {/* CTAs Stacked */}
@@ -53,18 +55,18 @@ export function HeroMobile() {
             <Magnetic>
               <button
                 onClick={scrollToContent}
-                className="group relative px-8 py-4 bg-[#795558] text-white rounded-full overflow-hidden shadow-xl w-full max-w-[200px]"
+                className="group relative px-8 py-4 bg-[#795558] dark:bg-[#FCF6EF] text-white dark:text-[#1a1515] rounded-full overflow-hidden shadow-xl w-full max-w-[200px] transition-all"
               >
                 <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex items-center justify-center gap-3 relative z-10">
-                  <span className="font-black uppercase tracking-[0.2em] text-[9px]">Ver Portfólio</span>
+                  <span className="font-black uppercase tracking-[0.2em] text-[9px]">{t('hero.cta')}</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </div>
               </button>
             </Magnetic>
 
-            <span className="text-[8px] font-bold uppercase tracking-[0.3em] text-[#795558]/40">
-              Criação sob Medida
+            <span className="text-[8px] font-bold uppercase tracking-[0.3em] text-[#795558]/40 dark:text-white/30 transition-colors">
+              {t('hero.tailored')}
             </span>
           </div>
         </motion.div>

@@ -19,7 +19,7 @@ export function WhatsAppButton() {
       aria-label="Falar no WhatsApp"
     >
       {/* Tooltip on Hover */}
-      <span className="absolute right-full mr-3 bg-white text-[#795558] px-3 py-1.5 rounded-lg text-sm font-medium shadow-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+      <span className="absolute right-full mr-3 bg-white dark:bg-[#251e1e] text-[#795558] dark:text-[#FCF6EF] px-3 py-1.5 rounded-lg text-sm font-medium shadow-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none border dark:border-white/10">
         Falar com a Anna
       </span>
 

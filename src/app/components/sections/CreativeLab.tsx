@@ -1,17 +1,14 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import {
-    MousePointer2,
     FlaskConical,
     Dna,
     MoveRight,
     Sparkles,
     Target,
     Layers,
-    Hexagon,
-    Menu,
-    Palette
+    Hexagon
 } from 'lucide-react';
 import { analyzeColor } from '@/app/utils/colorPsychology';
 
@@ -80,7 +77,7 @@ const AlchemyPicker = ({ onColorChange }: { onColorChange: (h: number, s: number
         <div className="flex flex-col items-center gap-12 w-full max-w-lg group">
             <div
                 ref={pickerRef}
-                className="relative aspect-square w-full rounded-full shadow-[0_50px_100px_rgba(121,85,88,0.1)] cursor-crosshair flex items-center justify-center p-3 bg-white border border-[#795558]/5"
+                className="relative aspect-square w-full rounded-full shadow-[0_50px_100px_rgba(121,85,88,0.1)] cursor-crosshair flex items-center justify-center p-3 bg-white dark:bg-[#1a1515] border border-[#795558]/5 dark:border-white/5"
                 style={{
                     background: `
                         radial-gradient(circle at 50% 50%, white 0%, transparent 80%),
@@ -91,8 +88,8 @@ const AlchemyPicker = ({ onColorChange }: { onColorChange: (h: number, s: number
                 onTouchStart={(e) => { isDragging.current = true; handleUpdate(e.touches[0].clientX, e.touches[0].clientY); }}
             >
                 {/* Decorative Rings */}
-                <div className="absolute inset-0 border border-[#795558]/5 rounded-full scale-[1.05] pointer-events-none" />
-                <div className="absolute inset-0 border border-dashed border-[#795558]/10 rounded-full scale-[1.12] pointer-events-none group-hover:rotate-12 transition-transform duration-1000" />
+                <div className="absolute inset-0 border border-[#795558]/5 dark:border-white/5 rounded-full scale-[1.05] pointer-events-none" />
+                <div className="absolute inset-0 border border-dashed border-[#795558]/10 dark:border-white/10 rounded-full scale-[1.12] pointer-events-none group-hover:rotate-12 transition-transform duration-1000" />
 
                 <motion.div
                     animate={{
@@ -106,9 +103,9 @@ const AlchemyPicker = ({ onColorChange }: { onColorChange: (h: number, s: number
                 </motion.div>
 
                 {/* Center Nucleus */}
-                <div className="w-[38%] h-[38%] bg-[#FCF6EF] rounded-full shadow-inner border border-black/5 flex items-center justify-center relative">
-                    <div className="absolute inset-0 bg-white/40 rounded-full animate-pulse" />
-                    <div className="w-16 h-16 rounded-full shadow-2xl border-4 border-white relative z-10 overflow-hidden" style={{ backgroundColor: `hsl(${h}, ${s}%, ${l}%)` }}>
+                <div className="w-[38%] h-[38%] bg-[#FCF6EF] dark:bg-[#251e1e] rounded-full shadow-inner border border-black/5 dark:border-white/5 flex items-center justify-center relative">
+                    <div className="absolute inset-0 bg-white/40 dark:bg-white/5 rounded-full animate-pulse" />
+                    <div className="w-16 h-16 rounded-full shadow-2xl border-4 border-white dark:border-[#251e1e] relative z-10 overflow-hidden" style={{ backgroundColor: `hsl(${h}, ${s}%, ${l}%)` }}>
                         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/30 to-transparent" />
                     </div>
                 </div>
@@ -118,10 +115,10 @@ const AlchemyPicker = ({ onColorChange }: { onColorChange: (h: number, s: number
             <div className="w-full space-y-6 px-4">
                 <div className="flex justify-between items-end">
                     <div className="space-y-1">
-                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#795558]/30 italic">Luminosidade</span>
-                        <p className="text-xs font-serif text-[#795558]/60 italic">Afinando a vibração cromática</p>
+                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#795558]/30 dark:text-[#FCF6EF]/30 italic transition-colors">Luminosidade</span>
+                        <p className="text-xs font-serif text-[#795558]/60 dark:text-[#FCF6EF]/60 italic transition-colors">Afinando a vibração cromática</p>
                     </div>
-                    <span className="text-xl font-serif text-[#795558]">{Math.round(l)}%</span>
+                    <span className="text-xl font-serif text-[#795558] dark:text-[#FCF6EF] transition-colors">{Math.round(l)}%</span>
                 </div>
                 <div className="relative h-6 flex items-center">
                     <div className="absolute inset-0 rounded-full bg-[#795558]/5 overflow-hidden">
@@ -171,12 +168,12 @@ export function CreativeLab() {
     const analo2 = hslToHex((activeColor.h - 30 + 360) % 360, activeColor.s, activeColor.l);
 
     return (
-        <section id="laboratorio" className="py-16 md:py-24 bg-[#FCF6EF] relative overflow-hidden">
+        <section id="laboratorio" className="py-16 md:py-24 bg-[#FCF6EF] dark:bg-[#1a1515] transition-colors duration-500 relative overflow-hidden">
             {/* Structural Ornaments */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-[0.03]">
-                <div className="absolute top-0 left-1/4 w-[1px] h-full bg-[#795558]" />
-                <div className="absolute top-1/2 left-0 w-full h-[1px] bg-[#795558]" />
-                <div className="absolute bottom-20 left-4 md:left-10 text-[10rem] md:text-[20rem] font-serif italic text-[#795558]">Lab</div>
+            <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-[0.03] dark:opacity-[0.05]">
+                <div className="absolute top-0 left-1/4 w-[1px] h-full bg-[#795558] dark:bg-white" />
+                <div className="absolute top-1/2 left-0 w-full h-[1px] bg-[#795558] dark:bg-white" />
+                <div className="absolute bottom-20 left-4 md:left-10 text-[10rem] md:text-[20rem] font-serif italic text-[#795558] dark:text-white">Lab</div>
             </div>
 
             <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
@@ -187,15 +184,15 @@ export function CreativeLab() {
                         viewport={{ once: true }}
                         className="space-y-6"
                     >
-                        <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-[#795558]/10 bg-white shadow-sm">
-                            <FlaskConical className="w-3.5 h-3.5 text-[#795558]" />
-                            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#795558]">Alquimia de Marca</span>
+                        <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-[#795558]/10 dark:border-white/10 bg-white dark:bg-white/5 shadow-sm">
+                            <FlaskConical className="w-3.5 h-3.5 text-[#795558] dark:text-[#FCF6EF]" />
+                            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#795558] dark:text-[#FCF6EF]">Alquimia de Marca</span>
                         </div>
-                        <h2 className="text-5xl md:text-8xl lg:text-9xl font-serif text-[#795558] leading-[0.85] tracking-tight">
-                            Color <br /> <span className="italic font-light opacity-60">Laboratory</span>
+                        <h2 className="text-5xl md:text-8xl lg:text-9xl font-serif text-[#795558] dark:text-[#FCF6EF] leading-[0.85] tracking-tight">
+                            Color <br /> <span className="italic font-light opacity-60 dark:opacity-40">Laboratory</span>
                         </h2>
                         <div className="max-w-xl mx-auto pt-8">
-                            <p className="text-lg md:text-xl text-[#795558]/50 font-light italic leading-relaxed">
+                            <p className="text-lg md:text-xl text-[#795558]/50 dark:text-[#FCF6EF]/50 font-light italic leading-relaxed">
                                 Explore a psicologia cromática através de uma curadoria técnica experimental. Transforme sensações em estratégia.
                             </p>
                         </div>
@@ -212,20 +209,20 @@ export function CreativeLab() {
                     >
                         <AlchemyPicker onColorChange={(h, s, l) => setActiveColor({ h, s, l })} />
 
-                        <div className="w-full p-8 rounded-[2.5rem] bg-white border border-[#795558]/10 shadow-sm space-y-8">
-                            <div className="flex items-center gap-4 text-[#795558]/40 border-b border-[#795558]/5 pb-6">
+                        <div className="w-full p-8 rounded-[2.5rem] bg-white dark:bg-[#251e1e] border border-[#795558]/10 dark:border-white/10 shadow-sm space-y-8 transition-colors">
+                            <div className="flex items-center gap-4 text-[#795558]/40 dark:text-white/20 border-b border-[#795558]/5 dark:border-white/5 pb-6">
                                 <Dna className="w-4 h-4" />
                                 <span className="text-[9px] font-black uppercase tracking-[0.4em]">Propriedades do Matiz</span>
                             </div>
 
                             <div className="grid grid-cols-2 gap-8">
                                 <div className="space-y-2">
-                                    <span className="text-[8px] font-bold text-gray-300 uppercase tracking-widest">Hex Code</span>
-                                    <p className="text-2xl font-serif text-[#795558] tracking-wider">{mainHex}</p>
+                                    <span className="text-[8px] font-bold text-gray-300 dark:text-white/20 uppercase tracking-widest">Hex Code</span>
+                                    <p className="text-2xl font-serif text-[#795558] dark:text-[#FCF6EF] tracking-wider">{mainHex}</p>
                                 </div>
                                 <div className="space-y-2">
-                                    <span className="text-[8px] font-bold text-gray-300 uppercase tracking-widest">Classificação</span>
-                                    <p className="text-xl font-serif italic text-[#795558]/70 leading-tight">{colorData.title}</p>
+                                    <span className="text-[8px] font-bold text-gray-300 dark:text-white/20 uppercase tracking-widest">Classificação</span>
+                                    <p className="text-xl font-serif italic text-[#795558]/70 dark:text-[#FCF6EF]/70 leading-tight">{colorData.title}</p>
                                 </div>
                             </div>
                         </div>
@@ -238,15 +235,15 @@ export function CreativeLab() {
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8 }}
-                            className="bg-white rounded-[3.5rem] p-10 md:p-14 shadow-[0_50px_120px_-20px_rgba(121,85,88,0.12)] border border-[#795558]/5 relative overflow-hidden"
+                            className="bg-white dark:bg-[#251e1e] rounded-[3.5rem] p-10 md:p-14 shadow-[0_50px_120px_-20px_rgba(121,85,88,0.12)] border border-[#795558]/5 dark:border-white/5 relative overflow-hidden transition-colors"
                         >
                             {/* Abstract Element inside card */}
                             <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full opacity-[0.04]" style={{ backgroundColor: mainHex }} />
 
                             <div className="flex flex-col md:flex-row items-start md:items-center gap-8 mb-12">
-                                <motion.div animate={{ backgroundColor: mainHex }} className="w-24 h-24 md:w-28 md:h-28 rounded-[2.5rem] shadow-2xl border-8 border-[#FCF6EF]" />
+                                <motion.div animate={{ backgroundColor: mainHex }} className="w-24 h-24 md:w-28 md:h-28 rounded-[2.5rem] shadow-2xl border-8 border-[#FCF6EF] dark:border-[#1a1515]" />
                                 <div className="space-y-3">
-                                    <h3 className="text-4xl md:text-5xl font-serif text-[#795558] leading-tight italic">Estratégia Visual</h3>
+                                    <h3 className="text-4xl md:text-5xl font-serif text-[#795558] dark:text-[#FCF6EF] leading-tight italic">Estratégia Visual</h3>
                                     <div className="flex gap-3 flex-wrap">
                                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#795558]/5 border border-[#795558]/10">
                                             <Target className="w-3 h-3 text-[#795558]" />
@@ -262,28 +259,28 @@ export function CreativeLab() {
 
                             <div className="space-y-12">
                                 <div className="space-y-6">
-                                    <div className="w-12 h-[1.5px] bg-[#795558]/10" />
-                                    <p className="text-2xl md:text-3xl text-[#795558] font-serif font-light leading-snug italic text-balance">
+                                    <div className="w-12 h-[1.5px] bg-[#795558]/10 dark:bg-white/10" />
+                                    <p className="text-2xl md:text-3xl text-[#795558] dark:text-[#FCF6EF] font-serif font-light leading-snug italic text-balance">
                                         "{colorData.description}"
                                     </p>
                                 </div>
 
-                                <div className="py-6 border-y border-[#795558]/5">
-                                    <h4 className="text-[9px] font-black uppercase tracking-[0.4em] text-[#795558]/30 mb-4 flex items-center gap-2"><Hexagon className="w-3 h-3" /> Setores Recomendados</h4>
+                                <div className="py-6 border-y border-[#795558]/5 dark:border-white/5">
+                                    <h4 className="text-[9px] font-black uppercase tracking-[0.4em] text-[#795558]/30 dark:text-white/20 mb-4 flex items-center gap-2"><Hexagon className="w-3 h-3" /> Setores Recomendados</h4>
                                     <div className="flex flex-wrap gap-2">
                                         {colorData.industries.map(ind => (
-                                            <span key={ind} className="px-3 py-1.5 bg-[#FCF6EF] rounded-lg text-xs font-bold text-[#795558]/70 border border-[#795558]/5 uppercase tracking-wide">{ind}</span>
+                                            <span key={ind} className="px-3 py-1.5 bg-[#FCF6EF] dark:bg-white/5 rounded-lg text-xs font-bold text-[#795558]/70 dark:text-[#FCF6EF]/70 border border-[#795558]/5 dark:border-white/5 uppercase tracking-wide">{ind}</span>
                                         ))}
                                     </div>
                                 </div>
 
                                 <section className="space-y-6">
-                                    <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-[#795558]/30 flex items-center gap-2"><Sparkles className="w-3 h-3" /> Personalidade da Marca</h4>
+                                    <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-[#795558]/30 dark:text-white/20 flex items-center gap-2"><Sparkles className="w-3 h-3" /> Personalidade da Marca</h4>
                                     <div className="flex flex-wrap gap-3">
                                         {colorData.keywords.map((kw, i) => (
-                                            <span key={i} className="text-lg md:text-xl font-serif italic text-[#795558] opacity-80 decoration-1 underline decoration-[#795558]/20 underline-offset-4">{kw}</span>
+                                            <span key={i} className="text-lg md:text-xl font-serif italic text-[#795558] dark:text-[#FCF6EF] opacity-80 decoration-1 underline decoration-[#795558]/20 dark:decoration-white/20 underline-offset-4">{kw}</span>
                                         ))}
-                                        <span className="text-lg md:text-xl font-serif italic text-[#795558]/40">{colorData.personality}</span>
+                                        <span className="text-lg md:text-xl font-serif italic text-[#795558]/40 dark:text-white/20">{colorData.personality}</span>
                                     </div>
                                 </section>
 
@@ -312,16 +309,16 @@ export function CreativeLab() {
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                             onClick={goBriefing}
-                            className="group relative w-full bg-[#795558] p-12 rounded-[3rem] text-[#FCF6EF] overflow-hidden shadow-2xl hover:shadow-[#795558]/40 transition-all"
+                            className="group relative w-full bg-[#795558] dark:bg-[#FCF6EF] p-12 rounded-[3rem] text-[#FCF6EF] dark:text-[#1a1515] overflow-hidden shadow-2xl hover:shadow-[#795558]/40 dark:hover:shadow-white/10 transition-all font-bold"
                         >
-                            <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                            <div className="absolute inset-0 bg-white/5 dark:bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                             <div className="relative z-10 flex items-center justify-between">
                                 <div className="text-left space-y-2">
-                                    <h4 className="text-2xl md:text-3xl font-serif text-white">Criar Projeto Baseado nisto</h4>
-                                    <p className="text-[9px] uppercase tracking-[0.5em] text-white/50 font-black">Iniciar Briefing Customizado</p>
+                                    <h4 className="text-2xl md:text-3xl font-serif text-white dark:text-[#1a1515]">Criar Projeto Baseado nisto</h4>
+                                    <p className="text-[9px] uppercase tracking-[0.5em] text-white/50 dark:text-[#1a1515]/50 font-black">Iniciar Briefing Customizado</p>
                                 </div>
-                                <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center group-hover:translate-x-2 transition-transform">
-                                    <MoveRight className="w-8 h-8 text-white" />
+                                <div className="w-16 h-16 rounded-full bg-white/10 dark:bg-black/10 flex items-center justify-center group-hover:translate-x-2 transition-transform">
+                                    <MoveRight className="w-8 h-8 text-white dark:text-[#1a1515]" />
                                 </div>
                             </div>
                         </motion.button>

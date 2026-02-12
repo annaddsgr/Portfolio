@@ -240,11 +240,11 @@ export function BriefingPage() {
     ];
 
     return (
-        <div className="min-h-screen bg-[#FCF6EF] py-12 md:py-24 px-4 md:px-12 relative overflow-hidden">
+        <div className="min-h-screen bg-[#FCF6EF] dark:bg-[#1a1515] transition-colors duration-500 py-12 md:py-24 px-4 md:px-12 relative overflow-hidden">
             {/* Background Texture */}
             <div className="fixed inset-0 pointer-events-none opacity-40">
-                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#795558]/5 rounded-full blur-[120px]" />
-                <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#795558]/3 rounded-full blur-[150px]" />
+                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#795558]/5 dark:bg-white/5 rounded-full blur-[120px]" />
+                <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#795558]/3 dark:bg-white/3 rounded-full blur-[150px]" />
             </div>
 
             <motion.div
@@ -259,9 +259,9 @@ export function BriefingPage() {
                             onClick={() => {
                                 navigate('/');
                             }}
-                            className="group flex items-center gap-3 md:gap-4 text-[#795558]"
+                            className="group flex items-center gap-3 md:gap-4 text-[#795558] dark:text-[#FCF6EF]"
                         >
-                            <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:bg-[#795558] group-hover:text-white transition-all">
+                            <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white dark:bg-[#251e1e] flex items-center justify-center shadow-sm group-hover:bg-[#795558] dark:group-hover:bg-[#FCF6EF] dark:group-hover:text-[#1a1515] group-hover:text-white transition-all">
                                 <ArrowLeft className="w-4 h-4 md:w-5 md:h-5" />
                             </div>
                             <span className="text-[9px] md:text-[10px] font-black uppercase tracking-widest">Início</span>
@@ -276,7 +276,7 @@ export function BriefingPage() {
                                 navigator.clipboard.writeText(url);
                                 toast.success('Link do briefing copiado! Prontinho para enviar ao cliente.');
                             }}
-                            className="group flex items-center gap-3 bg-white/50 backdrop-blur-sm border border-[#795558]/5 px-4 md:px-6 py-3 rounded-full hover:bg-[#795558] hover:text-white transition-all shadow-sm"
+                            className="group flex items-center gap-3 bg-white/50 dark:bg-white/10 backdrop-blur-sm border border-[#795558]/5 dark:border-white/10 px-4 md:px-6 py-3 rounded-full hover:bg-[#795558] dark:hover:bg-[#FCF6EF] hover:text-white dark:hover:text-[#1a1515] transition-all shadow-sm text-[#795558] dark:text-[#FCF6EF]"
                         >
                             <div className="w-2 h-2 rounded-full bg-green-400 group-hover:animate-ping" />
                             <span className="text-[9px] md:text-[10px] font-black uppercase tracking-widest">Copiar Link Direto</span>
@@ -284,25 +284,25 @@ export function BriefingPage() {
                     </div>
 
                     <div className="text-right hidden sm:block">
-                        <span className="text-[9px] md:text-[10px] font-black tracking-widest text-[#795558]/30 uppercase">Passo {step} de 5</span>
-                        <div className="w-24 md:w-32 h-[3px] bg-[#795558]/5 mt-2 rounded-full overflow-hidden">
+                        <span className="text-[9px] md:text-[10px] font-black tracking-widest text-[#795558]/30 dark:text-white/20 uppercase">Passo {step} de 5</span>
+                        <div className="w-24 md:w-32 h-[3px] bg-[#795558]/5 dark:bg-white/10 mt-2 rounded-full overflow-hidden">
                             <motion.div
                                 initial={{ width: 0 }}
                                 animate={{ width: `${(step / 5) * 100}%` }}
-                                className="h-full bg-[#795558]"
+                                className="h-full bg-[#795558] dark:bg-[#FCF6EF]"
                             />
                         </div>
                     </div>
                 </div>
 
-                <div className="bg-white rounded-[2.5rem] md:rounded-[4rem] shadow-[0_50px_100px_-20px_rgba(121,85,88,0.15)] overflow-hidden border border-[#795558]/5">
+                <div className="bg-white dark:bg-[#251e1e] rounded-[2.5rem] md:rounded-[4rem] shadow-[0_50px_100px_-20px_rgba(121,85,88,0.15)] overflow-hidden border border-[#795558]/5 dark:border-white/5">
                     <div className="p-8 md:p-16 lg:p-20">
                         <header className="mb-12 md:mb-16">
-                            <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-[#FCF6EF] rounded-full text-[#795558] mb-6 md:mb-8">
+                            <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-[#FCF6EF] dark:bg-white/5 rounded-full text-[#795558] dark:text-[#FCF6EF] mb-6 md:mb-8">
                                 <Star className="w-3 h-3" />
                                 <span className="text-[9px] md:text-[10px] font-black uppercase tracking-widest">Dossiê Estratégico</span>
                             </div>
-                            <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif text-[#795558] leading-tight">
+                            <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif text-[#795558] dark:text-[#FCF6EF] leading-tight">
                                 {step === 1 && <>Vamos começar pelo <span className="italic font-light">essencial</span></>}
                                 {step === 2 && <>Sua história é seu <span className="italic font-light">diferencial</span></>}
                                 {step === 3 && <>O que vamos <span className="italic font-light">construir</span>?</>}
@@ -318,26 +318,26 @@ export function BriefingPage() {
                                     <motion.div key="s1" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-8 md:space-y-12">
                                         <div className="grid md:grid-cols-2 gap-8 md:gap-10">
                                             <div className="space-y-3">
-                                                <label className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1 flex items-center gap-2"><User className="w-3 h-3" /> Seu Nome</label>
-                                                <input type="text" name="name" required value={formData.name} onChange={handleChange} className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none focus:border-[#795558] transition-all rounded-t-xl text-sm md:text-base" />
+                                                <label className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#795558]/50 dark:text-white/30 ml-1 flex items-center gap-2"><User className="w-3 h-3" /> Seu Nome</label>
+                                                <input type="text" name="name" required value={formData.name} onChange={handleChange} className="w-full bg-[#FCF6EF]/40 dark:bg-white/5 border-b border-[#795558]/10 dark:border-white/10 px-4 py-4 text-[#795558] dark:text-[#FCF6EF] focus:outline-none focus:border-[#795558] dark:focus:border-white transition-all rounded-t-xl text-sm md:text-base" />
                                             </div>
                                             <div className="space-y-3">
-                                                <label className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1 flex items-center gap-2"><Star className="w-3 h-3" /> Nome da Marca</label>
-                                                <input type="text" name="brandName" value={formData.brandName} onChange={handleChange} className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none focus:border-[#795558] transition-all rounded-t-xl text-sm md:text-base" />
+                                                <label className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#795558]/50 dark:text-white/30 ml-1 flex items-center gap-2"><Star className="w-3 h-3" /> Nome da Marca</label>
+                                                <input type="text" name="brandName" value={formData.brandName} onChange={handleChange} className="w-full bg-[#FCF6EF]/40 dark:bg-white/5 border-b border-[#795558]/10 dark:border-white/10 px-4 py-4 text-[#795558] dark:text-[#FCF6EF] focus:outline-none focus:border-[#795558] dark:focus:border-white transition-all rounded-t-xl text-sm md:text-base" />
                                             </div>
                                         </div>
                                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                                             <div className="space-y-3">
-                                                <label className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1">WhatsApp</label>
-                                                <input type="text" name="whatsapp" required value={formData.whatsapp} onChange={handleChange} className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none focus:border-[#795558] transition-all rounded-t-xl text-sm md:text-base" />
+                                                <label className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#795558]/50 dark:text-white/30 ml-1">WhatsApp</label>
+                                                <input type="text" name="whatsapp" required value={formData.whatsapp} onChange={handleChange} className="w-full bg-[#FCF6EF]/40 dark:bg-white/5 border-b border-[#795558]/10 dark:border-white/10 px-4 py-4 text-[#795558] dark:text-[#FCF6EF] focus:outline-none focus:border-[#795558] dark:focus:border-white transition-all rounded-t-xl text-sm md:text-base" />
                                             </div>
                                             <div className="space-y-3">
-                                                <label className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1">E-mail</label>
-                                                <input type="email" name="email" required value={formData.email} onChange={handleChange} className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none focus:border-[#795558] transition-all rounded-t-xl text-sm md:text-base" />
+                                                <label className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#795558]/50 dark:text-white/30 ml-1">E-mail</label>
+                                                <input type="email" name="email" required value={formData.email} onChange={handleChange} className="w-full bg-[#FCF6EF]/40 dark:bg-white/5 border-b border-[#795558]/10 dark:border-white/10 px-4 py-4 text-[#795558] dark:text-[#FCF6EF] focus:outline-none focus:border-[#795558] dark:focus:border-white transition-all rounded-t-xl text-sm md:text-base" />
                                             </div>
                                             <div className="space-y-3">
-                                                <label className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1 flex items-center gap-2"><Instagram className="w-3 h-3" /> Instagram/Site</label>
-                                                <input type="text" name="instagram" value={formData.instagram} onChange={handleChange} className="w-full bg-[#FCF6EF]/40 border-b border-[#795558]/10 px-4 py-4 text-[#795558] focus:outline-none focus:border-[#795558] transition-all rounded-t-xl text-sm md:text-base" />
+                                                <label className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#795558]/50 dark:text-white/30 ml-1 flex items-center gap-2"><Instagram className="w-3 h-3" /> Instagram/Site</label>
+                                                <input type="text" name="instagram" value={formData.instagram} onChange={handleChange} className="w-full bg-[#FCF6EF]/40 dark:bg-white/5 border-b border-[#795558]/10 dark:border-white/10 px-4 py-4 text-[#795558] dark:text-[#FCF6EF] focus:outline-none focus:border-[#795558] dark:focus:border-white transition-all rounded-t-xl text-sm md:text-base" />
                                             </div>
                                         </div>
                                     </motion.div>
@@ -370,7 +370,7 @@ export function BriefingPage() {
                                             <label className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#795558]/50 ml-1 flex items-center gap-2"><Briefcase className="w-3 h-3" /> Qual o serviço principal?</label>
                                             <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
                                                 {services.map((s) => (
-                                                    <button key={s} type="button" onClick={() => handleServiceSelect(s)} className={`px-3 py-4 md:px-4 md:py-5 rounded-xl md:rounded-2xl border transition-all text-[8px] md:text-[10px] font-bold uppercase tracking-widest ${formData.service === s ? 'bg-[#795558] text-white border-[#795558] shadow-lg' : 'bg-white text-[#795558]/60 border-[#795558]/10 hover:border-[#795558]/30'}`}>{s}</button>
+                                                    <button key={s} type="button" onClick={() => handleServiceSelect(s)} className={`px-3 py-4 md:px-4 md:py-5 rounded-xl md:rounded-2xl border transition-all text-[8px] md:text-[10px] font-bold uppercase tracking-widest ${formData.service === s ? 'bg-[#795558] dark:bg-[#FCF6EF] text-white dark:text-[#1a1515] border-[#795558] dark:border-[#FCF6EF] shadow-lg' : 'bg-white dark:bg-white/5 text-[#795558]/60 dark:text-[#FCF6EF]/60 border-[#795558]/10 dark:border-white/10 hover:border-[#795558]/30 dark:hover:border-white/30'}`}>{s}</button>
                                                 ))}
                                             </div>
                                         </div>
@@ -440,8 +440,8 @@ export function BriefingPage() {
                                                 </select>
                                             </div>
                                         </div>
-                                        <div className="p-6 md:p-8 bg-[#FCF6EF]/30 rounded-2xl md:rounded-3xl border border-[#795558]/5">
-                                            <p className="text-[10px] md:text-[11px] text-[#795558]/50 leading-relaxed font-light italic">
+                                        <div className="p-6 md:p-8 bg-[#FCF6EF]/30 dark:bg-white/5 rounded-2xl md:rounded-3xl border border-[#795558]/5 dark:border-white/10">
+                                            <p className="text-[10px] md:text-[11px] text-[#795558]/50 dark:text-[#FCF6EF]/40 leading-relaxed font-light italic">
                                                 "Ao clicar em finalizar, um dossiê estratégico em PDF será gerado com todas as suas informações.
                                                 Terei o prazer de analisar cada detalhe para transformarmos sua marca em algo inesquecível."
                                             </p>
@@ -453,15 +453,15 @@ export function BriefingPage() {
                             {/* Nav */}
                             <div className="flex items-center justify-between pt-10 md:pt-12 border-t border-[#795558]/5 mt-8 md:mt-12">
                                 {step > 1 ? (
-                                    <button type="button" onClick={prevStep} className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#795558]/40 hover:text-[#795558] transition-colors">Anterior</button>
+                                    <button type="button" onClick={prevStep} className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#795558]/40 dark:text-white/40 hover:text-[#795558] dark:hover:text-white transition-colors">Anterior</button>
                                 ) : <div />}
 
                                 {step < 5 ? (
-                                    <motion.button type="button" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={nextStep} disabled={step === 3 && !formData.service} className={`bg-[#795558] text-white px-8 py-4 md:px-10 md:py-5 rounded-xl md:rounded-2xl font-bold uppercase tracking-[0.2em] text-[9px] md:text-[10px] shadow-xl ${step === 3 && !formData.service ? 'opacity-50' : ''}`}>Próximo Passo</motion.button>
+                                    <motion.button type="button" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={nextStep} disabled={step === 3 && !formData.service} className={`bg-[#795558] dark:bg-[#FCF6EF] text-white dark:text-[#1a1515] px-8 py-4 md:px-10 md:py-5 rounded-xl md:rounded-2xl font-bold uppercase tracking-[0.2em] text-[9px] md:text-[10px] shadow-xl ${step === 3 && !formData.service ? 'opacity-50' : ''}`}>Próximo Passo</motion.button>
                                 ) : (
-                                    <motion.button type="submit" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} disabled={isSubmitting} className="bg-[#795558] text-white pl-8 pr-3 py-2 md:pl-10 md:pr-4 md:py-3 rounded-full flex items-center gap-4 md:gap-6 font-bold uppercase tracking-[0.2em] text-[9px] md:text-[10px] shadow-2xl group">
+                                    <motion.button type="submit" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} disabled={isSubmitting} className="bg-[#795558] dark:bg-[#FCF6EF] text-white dark:text-[#1a1515] pl-8 pr-3 py-2 md:pl-10 md:pr-4 md:py-3 rounded-full flex items-center gap-4 md:gap-6 font-bold uppercase tracking-[0.2em] text-[9px] md:text-[10px] shadow-2xl group">
                                         {isSubmitting ? 'Gerando Dossiê...' : 'Finalizar'}
-                                        <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white text-[#795558] flex items-center justify-center group-hover:rotate-12 transition-transform">
+                                        <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white dark:bg-[#1a1515] text-[#795558] dark:text-[#FCF6EF] flex items-center justify-center group-hover:rotate-12 transition-transform">
                                             <Send className="w-4 h-4 md:w-5 md:h-5" />
                                         </div>
                                     </motion.button>
@@ -472,7 +472,7 @@ export function BriefingPage() {
                 </div>
 
                 <div className="mt-12 text-center opacity-30">
-                    <p className="text-[8px] md:text-[9px] font-bold uppercase tracking-[0.4em] text-[#795558]">&copy; 2026 Anna Designer Gráfico &bull; Processo Criativo Exclusivo</p>
+                    <p className="text-[8px] md:text-[9px] font-bold uppercase tracking-[0.4em] text-[#795558] dark:text-[#FCF6EF]">&copy; 2026 Anna Designer Gráfico &bull; Processo Criativo Exclusivo</p>
                 </div>
             </motion.div>
         </div>

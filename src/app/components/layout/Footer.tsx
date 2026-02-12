@@ -27,12 +27,12 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-[#795558] text-[#FCF6EF] pt-16 md:pt-40 pb-12 px-6 md:px-12 relative overflow-hidden">
+    <footer className="bg-[#795558] dark:bg-[#110e0e] text-[#FCF6EF] pt-16 md:pt-40 pb-12 px-6 md:px-12 relative overflow-hidden transition-colors duration-500">
       {/* Editorial Decorative Layer */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
-        <div className="absolute top-0 right-1/4 w-[1px] h-full bg-[#FCF6EF]" />
-        <div className="absolute top-1/2 left-0 w-full h-[1px] bg-[#FCF6EF]" />
-        <h1 className="absolute -bottom-10 -left-10 text-[35vw] font-serif italic text-white leading-none">A</h1>
+      <div className="absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05]">
+        <div className="absolute top-0 right-1/4 w-[1px] h-full bg-[#FCF6EF] dark:bg-white" />
+        <div className="absolute top-1/2 left-0 w-full h-[1px] bg-[#FCF6EF] dark:bg-white" />
+        <h1 className="absolute -bottom-10 -left-10 text-[35vw] font-serif italic text-white dark:text-[#795558]/10 leading-none">A</h1>
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -50,7 +50,7 @@ export function Footer() {
                 <Sparkles className="w-4 h-4" />
                 <span className="text-[10px] uppercase tracking-[0.4em] font-black">Visual Strategist</span>
               </div>
-              <h2 className="text-4xl md:text-8xl font-serif leading-[0.9] text-white">
+              <h2 className="text-3xl md:text-6xl font-serif leading-[1.1] text-white">
                 Vamos criar <br />
                 <span className="italic font-light opacity-60">o extraordinário.</span>
               </h2>
@@ -61,14 +61,14 @@ export function Footer() {
                 <span className="text-[10px] uppercase tracking-[0.4em] font-black text-[#FCF6EF]/30 block">Location</span>
                 <div className="flex items-center gap-3 text-lg font-serif italic">
                   <MapPin className="w-4 h-4 opacity-50" />
-                  Belo Horizonte, MG
+                  Ribeirão das Neves, MG
                 </div>
               </div>
               <div className="space-y-4">
                 <span className="text-[10px] uppercase tracking-[0.4em] font-black text-[#FCF6EF]/30 block">Status</span>
                 <div className="flex items-center gap-3 text-lg font-serif italic">
                   <div className="w-2 h-2 rounded-full bg-green-300 animate-pulse" />
-                  Agenda Aberta / 2026
+                  Agenda Aberta / {currentYear}
                 </div>
               </div>
             </div>
@@ -99,7 +99,7 @@ export function Footer() {
               <div className="flex flex-col gap-4 md:gap-6">
                 {[
                   { label: 'Instagram', url: 'https://instagram.com/annadsgr', icon: Instagram },
-                  { label: 'Email Me', url: 'mailto:contato@anna.com', icon: Mail },
+                  { label: 'Email Me', url: 'mailto:anna.designbr@gmail.com', icon: Mail },
                 ].map((social) => (
                   <Magnetic key={social.label}>
                     <a

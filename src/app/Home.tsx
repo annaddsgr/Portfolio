@@ -49,7 +49,7 @@ export function Home() {
   }, [location]);
 
   return (
-    <div className="min-h-screen bg-[#FCF6EF] antialiased md:cursor-none selection:bg-[#795558] selection:text-[#FCF6EF]">
+    <div className="min-h-screen bg-[#FCF6EF] dark:bg-[#1a1515] transition-colors duration-500 antialiased md:cursor-none selection:bg-[#795558] selection:text-[#FCF6EF] dark:selection:bg-[#FCF6EF] dark:selection:text-[#1a1515]">
 
 
       {/* Global Ambient Glow - Subtle Interactive Layer */}
@@ -61,7 +61,7 @@ export function Home() {
             y: [0, 30, 0],
           }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="hidden md:block absolute -top-1/4 -right-1/4 w-1/2 h-1/2 bg-[#795558]/5 rounded-full blur-[150px]"
+          className="hidden md:block absolute -top-1/4 -right-1/4 w-1/2 h-1/2 bg-[#795558]/5 dark:bg-white/5 rounded-full blur-[150px]"
         />
         <motion.div
           animate={{
@@ -69,15 +69,15 @@ export function Home() {
             y: [0, 60, 0],
           }}
           transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="hidden md:block absolute -bottom-1/4 -left-1/4 w-1/2 h-1/2 bg-[#FFDAF0]/10 rounded-full blur-[150px]"
+          className="hidden md:block absolute -bottom-1/4 -left-1/4 w-1/2 h-1/2 bg-[#FFDAF0]/10 dark:bg-white/5 rounded-full blur-[150px]"
         />
         {/* Mobile Static Fallback - Much lighter on GPU */}
-        <div className="md:hidden absolute inset-0 bg-gradient-to-br from-[#795558]/5 via-transparent to-[#FFDAF0]/5 opacity-50" />
+        <div className="md:hidden absolute inset-0 bg-gradient-to-br from-[#795558]/5 dark:from-white/5 via-transparent to-[#FFDAF0]/5 dark:to-white/5 opacity-50" />
       </div>
 
       {/* Scroll Progress Bar */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-[#795558] origin-left z-[1001]"
+        className="fixed top-0 left-0 right-0 h-1 bg-[#795558] dark:bg-[#FCF6EF] origin-left z-[1001]"
         style={{ scaleX: scrollYProgress }}
       />
 
