@@ -18,17 +18,41 @@
   }
 }
 
+/* Suavização Global e Comportamento de App */
+html, body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden; /* Evita quebra lateral acidental */
+  overscroll-behavior-y: none; /* Evita o "bounce" de recarga no mobile */
+  scroll-behavior: smooth;
+  width: 100%;
+  position: relative;
+}
+
+/* Remove o destaque azul ao tocar em botões/links no mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+/* Previne que imagens decorativas sejam arrastadas */
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
+
 /* Custom selection color */
 ::selection {
   background-color: #795558;
   color: #fcf6ef;
 }
 
-/* Suavização de renderização de fontes */
-body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #fcf6ef;
+/* Suporte para scroll suave em iOS */
+.scroll-touch {
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Accessibility High Contrast Mode */
